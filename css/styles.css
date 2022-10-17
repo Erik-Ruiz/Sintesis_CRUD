@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #78ACFF, #9EC3FF);
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+    text-align: center;
+    padding: 20px 25px;
+    width: 50%;
+    height: 50vh;
+    box-shadow: 0 5px 10px rgba(71, 3, 6, 0.7);
+}
+
+#login .title {
+    color: #252525;
+    font-size: 35px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+#login label {
+    margin-bottom: 35px;
+}
+
+#login label .fa-solid {
+    font-size: 20px;
+    color: #5d5b64;
+    margin-right: 10px;
+}
+
+#login label input {
+    outline: none;
+    border: none;
+    color: #252525;
+    border-bottom: solid 1px #5d5b64;
+    padding: 0 5px;
+    font-size: 18px;
+    width: 100%;
+}
+
+#login label input::placeholder {
+    color: rgba(37, 37, 37, 0.5);
+}
+
+
+#login .link {
+    color: #252525;
+    margin-bottom: 15px;
+}
+
+#login button {
+    color: #fff;
+    border: none;
+    background: linear-gradient(to right, #1290FF, #37A1FF);
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.logo_y_login{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    
+       
+}
+
+.img_login img{
+    width: 100%;
+    height: 50vh;
+    
+}
+
+.flex-icon{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+@media screen and (max-width:800px) {
+
+    .logo_y_login{
+        
+        flex-direction: column;
+           
+    }
+    .img_login img{
+        width: 100%;
+        height: 40vh;
+        /* margin-bottom: 20px; */
+    }
+    #login{
+        width: 100%;
+    }
+}
