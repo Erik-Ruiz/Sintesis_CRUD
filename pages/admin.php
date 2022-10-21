@@ -5,6 +5,10 @@
     die();
   }
   require_once '../components/cabecera.html';
+  
+  require_once '../models/alumnos.php';
+
+  //$listaAlumno=Alumno::getAlumno();
 
 ?>
 <body>

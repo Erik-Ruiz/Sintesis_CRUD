@@ -1,9 +1,16 @@
 <?php
+
+$server = '192.168.24.228';
+$username = 'admin';
+$password = 'admin1234';
+$bd = 'bd_sintesis';
 // Nos conectamos a la base de datos mediante la funcion mysqli_connect
-  $conexion = mysqli_connect("192.168.24.228", "admin","admin1234", "bd_sintesis");
+$conexion = mysqli_connect($server,$username,$password,$bd);
 
 if (mysqli_connect_errno()) {
     header("Location: ../pages/login.php?log=2");
     exit();
 }
 
+// Definimos como una constante "NUM_ITEMS_BY_PAGE", esto solo mostrara 5 registros
+define('NUM_ITEMS_BY_PAGE', 10);

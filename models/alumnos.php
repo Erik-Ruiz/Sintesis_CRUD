@@ -24,7 +24,7 @@ final class alumno extends persona{
         $this->clase = $clase;
         $this->promocion = $promocion;
         $this->matricula = $matricula;
-
+    }
 
 
     /**
