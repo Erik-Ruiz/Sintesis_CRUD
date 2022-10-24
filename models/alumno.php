@@ -38,8 +38,8 @@ final class alumno extends persona{
 
         mysql_stmt_prepare($conexion, $sql)
 
-            msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
-                                         "s", $correo, "s", $clase, "s", $promocion, "s", $matricula);
+            msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
+            $correo,, $clase, $promocion, $matricula);
 
             msqli_stmt_execute($stmt);
             
@@ -65,8 +65,8 @@ final class alumno extends persona{
 
         mysql_stmt_prepare($conexion, $sql)
 
-            msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
-                                         "s", $correo, "s", $clase, "s", $promocion, "s", $matricula);
+            msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
+                                          $correo,, $clase, $promocion, $matricula);
 
             msqli_stmt_execute($stmt);
             
@@ -96,8 +96,8 @@ final class alumno extends persona{
 
         mysql_stmt_prepare($conexion, $sql)
 
-            msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
-                                         "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
+            msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
+            $correo,, $clase, $promocion, $matricula);
 
             msqli_stmt_execute($stmt);
             
@@ -149,8 +149,8 @@ final class alumno extends persona{
 
        mysql_stmt_prepare($conexion, $sql)
 
-           msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
-                                        "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
+           msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
+           $correo,, $clase, $promocion, $matricula);
 
            msqli_stmt_execute($stmt);
            
