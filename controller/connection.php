@@ -8,9 +8,9 @@ $bd = 'bd_sintesis';
 $conexion = mysqli_connect($server,$username,$password,$bd);
 
 if (mysqli_connect_errno()) {
-    header("Location: ../pages/login.php?log=2");
+    echo "<script>location.href='../pages/login.php?log=2'</script>";
     exit();
 }
 
-// Definimos como una constante "NUM_ITEMS_BY_PAGE", esto solo mostrara 5 registros
+// Definimos como una constante "NUM_ITEMS_BY_PAGE", esto solo mostrara 10 registros
 define('NUM_ITEMS_BY_PAGE', 10);

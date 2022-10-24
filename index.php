@@ -1,2 +1,1 @@
-<?php
-header('location: pages/info.php');
+<script>location.href='./pages/info.php'</script>

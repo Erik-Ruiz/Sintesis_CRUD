@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(empty($_SESSION['login'])){
-    header("Location: ../pages/login.php");
+    echo "<script>location.href='../pages/login.php'</script>";
     die();
   }
   
@@ -25,31 +25,6 @@
   </div>
 </nav>
 
-
-<!-- <div class="form-group align-items-center">
-  <form action="#" method="POST">
-  
-    <label for="fname">Nombre</label>
-    <input type="text" name="name" value="Nombre";>
-
-    <label for="lname">Apellido</label>
-    <input type="text" name="edad" value="Apellido">
-
-    <label for="marks">Nota</label>
-    <input type="number" name="nota" value="Nota">
-
-    <br>
-    <input type="submit" class="btn btn-warning" value="Actualizar">
-    
-    <br>
-    <input type="submit" class="btn btn-danger" value="Eliminar">
-    
-    <br>
-    <input type="checkbox" class="form-check-input mt-0">
-
-  </form>
-
-</div> -->
 
 <table class="table">
   

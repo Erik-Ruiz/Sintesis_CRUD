@@ -4,7 +4,7 @@ $logout = $_POST['logout'];
 
 if(isset($logout)){
     session_destroy();
-    header("Location: ../pages/login.php");
+    echo "<script>location.href='../pages/login.php'</script>";
 }else{
-    header("Location: ../pages/info.php");
+    echo "<script>location.href='../pages/info.php'</script>";
 }
