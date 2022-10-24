@@ -1,17 +1,18 @@
 <?php
 //recoge los datos de crear vista y los llevamos a alumno que es dnd los creamos, y vuelve
 
-require_once "../model/alumno.php";
+// require_once "../models/alumno.php";
 
 
-$nombre = $_POST['name'];
-$edad = $_POST['edad'];
-
-Alumno::crearAlumno($nombre, $edad);
+// $nombre = $_POST['name'];
+// $edad = $_POST['edad'];
 
 
-echo "<script>  
+// Alumno::crearAlumno($nombre, $edad);
 
-location.href='./indexcontroller.php';
 
-</script>";
+// echo "<script>  
+
+// location.href='./indexcontroller.php';
+
+// </script>";

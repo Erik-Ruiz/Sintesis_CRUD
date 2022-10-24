@@ -58,44 +58,29 @@ final class alumno extends persona{
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
         
-        $alu=new Alumno(null,$nombre,$apellido, $apellido2, $dni, $telefono,
-        $correo, $clase, $promocion, $matricula);
+        // $alu=new Alumno(null,$nombre,$apellido, $apellido2, $dni, $telefono,
+        // $correo, $clase, $promocion, $matricula);
         
 
-        $stmt=$pdo->prepare("INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
-        correo, clase, promocion, matricula) 
-        VALUES (:id, :nombre,:apellido, :apellido2, :dni, :telefono,:correo, :clase, :promocion, :matricula)");
-        $stmt->execute((array)$alu);
+        // $stmt=$pdo->prepare("INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
+        // correo, clase, promocion, matricula) 
+        // VALUES (:id, :nombre,:apellido, :apellido2, :dni, :telefono,:correo, :clase, :promocion, :matricula)");
+        // $stmt->execute((array)$alu);
 
         }
 
-        public static function getAlumnoId($id){
-
-            require_once "../controller/config.php";
-        require_once "../controller/connection.php";
-            
-            $stmt = $pdo->prepare("SELECT `id`, `nombre`, `edad` FROM `tbl_alumno` WHERE id = ?");
-
-            $stmt->bindParam(1, $id);
-            $stmt->execute();
-
-            $alumno = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            return $alumno;
-    
-    }
 
     public static function eliminarAlumno($id){
 
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
             
-            $stmt = $pdo->prepare("DELETE FROM tbl_alumno WHERE id=?");
+            // $stmt = $pdo->prepare("DELETE FROM tbl_alumno WHERE id=?");
 
 
-            $stmt->bindParam(1, $id);
+            // $stmt->bindParam(1, $id);
             
-            $stmt->execute();
+            // $stmt->execute();
 
     
     }
@@ -106,19 +91,19 @@ final class alumno extends persona{
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
 
-        $stmt=$pdo->prepare("UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=?, matricula=? WHERE id=?");                
-        $stmt->bindParam(1, $nombre);
-        $stmt->bindParam(2, $apellido);
-        $stmt->bindParam(3, $apellido2);
-        $stmt->bindParam(4, $dni);
-        $stmt->bindParam(5, $telefono);
-        $stmt->bindParam(6, $correo);
-        $stmt->bindParam(7, $clase);
-        $stmt->bindParam(8, $promocion);
-        $stmt->bindParam(9, $matricula);
-        $stmt->bindParam(10, $matricula);
+        // $stmt=$pdo->prepare("UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=?, matricula=? WHERE id=?");                
+        // $stmt->bindParam(1, $nombre);
+        // $stmt->bindParam(2, $apellido);
+        // $stmt->bindParam(3, $apellido2);
+        // $stmt->bindParam(4, $dni);
+        // $stmt->bindParam(5, $telefono);
+        // $stmt->bindParam(6, $correo);
+        // $stmt->bindParam(7, $clase);
+        // $stmt->bindParam(8, $promocion);
+        // $stmt->bindParam(9, $matricula);
+        // $stmt->bindParam(10, $matricula);
 
-        $stmt->execute();
+        // $stmt->execute();
 
 
 }
