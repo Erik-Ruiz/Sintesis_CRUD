@@ -31,12 +31,25 @@ final class alumno extends persona{
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
 
-        $sentencia = $pdo->prepare("SELECT * FROM tbl_alumno");
-        $sentencia->execute();
+        $sql="SELECT * FROM tbl_alumno";
 
-        $listaAlumnos=$sentencia->fetchALL(PDO::FETCH_ASSOC);
 
-        return $listaAlumnos;
+        $stmt = mysql_stmt_init($conexion);
+
+        mysql_stmt_prepare($conexion, $sql)
+
+            msqli_stmt_bind_param($stmt, "s", $username, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
+                                         "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
+
+            msqli_stmt_execute($stmt);
+            
+            $resultadoconsulta=msqli_stmt_get_result($stmt);
+
+            msqli_fetch_assoc($resultadoconsulta);
+
+            msqli_stmt_close($stmt);
+
+        return $resultadoconsulta;
     }
 
     public static function crearAlumno($nombre,$apellido, $apellido2, $dni, $telefono,
