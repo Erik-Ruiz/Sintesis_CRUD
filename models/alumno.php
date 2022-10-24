@@ -39,7 +39,7 @@ final class alumno extends persona{
         mysql_stmt_prepare($conexion, $sql)
 
             msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
-                                         "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
+                                         "s", $correo, "s", $clase, "s", $promocion, "s", $matricula);
 
             msqli_stmt_execute($stmt);
             
@@ -51,6 +51,36 @@ final class alumno extends persona{
 
         return $resultadoconsulta;
     }
+
+    public static function getAlumnoId($id){
+
+        require_once "../controller/config.php";
+        require_once "../controller/connection.php";
+        
+
+        $sql="SELECT * FROM `tbl_alumno` WHERE id = ?";
+
+
+        $stmt = mysql_stmt_init($conexion);
+
+        mysql_stmt_prepare($conexion, $sql)
+
+            msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
+                                         "s", $correo, "s", $clase, "s", $promocion, "s", $matricula);
+
+            msqli_stmt_execute($stmt);
+            
+            $resultadoconsulta=msqli_stmt_get_result($stmt);
+
+            msqli_fetch_assoc($resultadoconsulta);
+
+            msqli_stmt_close($stmt);
+
+            return $resultadoconsulta;
+
+
+
+}
 
     public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
                                        $correo, $clase, $promocion, $matricula){
