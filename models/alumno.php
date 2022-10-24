@@ -38,7 +38,7 @@ final class alumno extends persona{
 
         mysql_stmt_prepare($conexion, $sql)
 
-            msqli_stmt_bind_param($stmt, "s", $username, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
+            msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
                                          "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
 
             msqli_stmt_execute($stmt);
@@ -52,20 +52,30 @@ final class alumno extends persona{
         return $resultadoconsulta;
     }
 
-    public static function crearAlumno($nombre,$apellido, $apellido2, $dni, $telefono,
+    public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
                                        $correo, $clase, $promocion, $matricula){
 
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
         
-        // $alu=new Alumno(null,$nombre,$apellido, $apellido2, $dni, $telefono,
-        // $correo, $clase, $promocion, $matricula);
-        
+        $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
+         correo, clase, promocion, matricula";
 
-        // $stmt=$pdo->prepare("INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
-        // correo, clase, promocion, matricula) 
-        // VALUES (:id, :nombre,:apellido, :apellido2, :dni, :telefono,:correo, :clase, :promocion, :matricula)");
-        // $stmt->execute((array)$alu);
+
+        $stmt = mysql_stmt_init($conexion);
+
+        mysql_stmt_prepare($conexion, $sql)
+
+            msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
+                                         "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
+
+            msqli_stmt_execute($stmt);
+            
+            $resultadoconsulta=msqli_stmt_get_result($stmt);
+
+            msqli_fetch_assoc($resultadoconsulta);
+
+            msqli_stmt_close($stmt);
 
         }
 
@@ -75,12 +85,22 @@ final class alumno extends persona{
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
             
-            // $stmt = $pdo->prepare("DELETE FROM tbl_alumno WHERE id=?");
+        $sql="DELETE FROM tbl_alumno WHERE id=?";
 
 
-            // $stmt->bindParam(1, $id);
+            $stmt = mysql_stmt_init($conexion);
+
+            mysql_stmt_prepare($conexion, $sql)
+
+            msqli_stmt_bind_param($stmt, "i", $id);
+
+            msqli_stmt_execute($stmt);
             
-            // $stmt->execute();
+            $resultadoconsulta=msqli_stmt_get_result($stmt);
+
+            msqli_fetch_assoc($resultadoconsulta);
+
+            msqli_stmt_close($stmt);
 
     
     }
@@ -91,19 +111,24 @@ final class alumno extends persona{
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
 
-        // $stmt=$pdo->prepare("UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=?, matricula=? WHERE id=?");                
-        // $stmt->bindParam(1, $nombre);
-        // $stmt->bindParam(2, $apellido);
-        // $stmt->bindParam(3, $apellido2);
-        // $stmt->bindParam(4, $dni);
-        // $stmt->bindParam(5, $telefono);
-        // $stmt->bindParam(6, $correo);
-        // $stmt->bindParam(7, $clase);
-        // $stmt->bindParam(8, $promocion);
-        // $stmt->bindParam(9, $matricula);
-        // $stmt->bindParam(10, $matricula);
 
-        // $stmt->execute();
+        $sql="UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=?, matricula=? WHERE id=?";
+
+
+       $stmt = mysql_stmt_init($conexion);
+
+       mysql_stmt_prepare($conexion, $sql)
+
+           msqli_stmt_bind_param($stmt, "s", $nombre, "s", $apellido,"s", $apellido2, "s", $dni, "s", $telefono, 
+                                        "s", $correo, "s", $clase, "s", $promocion, "s", $mareicula);
+
+           msqli_stmt_execute($stmt);
+           
+           $resultadoconsulta=msqli_stmt_get_result($stmt);
+
+           msqli_fetch_assoc($resultadoconsulta);
+
+           msqli_stmt_close($stmt);
 
 
 }
