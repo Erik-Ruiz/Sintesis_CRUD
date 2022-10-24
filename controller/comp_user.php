@@ -28,9 +28,11 @@ try{
     if ($num==1){
         session_start();
         $_SESSION['login'] = $user;
+        echo "<script>alert('Hola')</script>";
         header("Location: ../pages/admin.php");
     }else{
         echo "Error";
+        echo "<script>alert('Error')</script>";
         header("Location: ../pages/login.php?log=1");
     }
 
