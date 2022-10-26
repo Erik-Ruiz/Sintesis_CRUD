@@ -5,7 +5,11 @@
     //die();
   }
   require_once '../components/cabecera.html';
-
+  require_once '../models/alumno.php';
+  $id=$_GET['id'];
+  // $id=4;
+  $infoAlumno=Alumno::getAlumnoId($id);
+  
 ?>
 <body>
     
@@ -20,17 +24,25 @@
   </div>
 </nav>
 
+
 <div class='container-alumno'>
   <div class='info-alumno'>
-    <img src="../img/logo.png" alt="" class="img-alumno"/>
-    <p>Sergio Merino Saceda</p>
+    <img src=<?php echo "../img/alum/".$infoAlumno['matricula'].".png"; ?> alt="" class="img-alumno"/>
+    <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido']; ?></p>
     <p>DAW 2</p>
     <button>Guardar</button>
   </div>
 
   <div class='info-materias'>
 
+    <!-- Bucle Modulo -->
     <div class='materia'>
+      <?php $infoNotas=Alumno::getNotasAlumno($id); 
+      
+      var_dump($infoNotas);
+      
+      ?>
+
       <div class='materia-titulo'>
         <p>MP07</p>
       </div>
@@ -41,12 +53,11 @@
             <th>UF</th>
             <th>Nota</th>
           </tr>
-
+          <!-- Bucle UFS -->
           <tr>
             <td>1</td>
             <td>7.5</td>
           </tr>
-
 
         </table>
 

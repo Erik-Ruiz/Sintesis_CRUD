@@ -27,7 +27,7 @@ final class Alumno extends persona{
 
     }
     public static function getAlumnos(){
-        $var = 1;
+        
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
 
@@ -43,7 +43,6 @@ final class Alumno extends persona{
         mysqli_fetch_assoc($resultadoconsulta);
 
         mysqli_stmt_close($stmt);
-
         mysqli_fetch_assoc($resultadoconsulta);
         return $resultadoconsulta;
     }
@@ -54,29 +53,42 @@ final class Alumno extends persona{
         require_once "../controller/connection.php";
         
 
-        $sql="SELECT * FROM `tbl_alumno` WHERE id = ?";
-
+        $sql="SELECT * FROM tbl_alumno where id = ?";
 
         $stmt = mysqli_stmt_init($conexion);
-
-        mysqli_stmt_prepare($conexion, $sql);
-
-        mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, $correo, $clase, $promocion, $matricula);
-
-        mysqli_stmt_execute($stmt);
+        mysqli_stmt_prepare($stmt,$sql);
             
-        $resultadoconsulta=mysqli_stmt_get_result($stmt);
-
-        mysqli_fetch_assoc($resultadoconsulta);
+        mysqli_stmt_bind_param($stmt,"i",$id);
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_assoc($consulta);
 
         mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
+    }   
 
-            return $resultadoconsulta;
+    public static function getNotasAlumno($id){
 
+        require_once "../controller/config.php";
+        require_once "../controller/connection.php";
+        
+        $sql="SELECT modulo,uf,nota FROM tbl_notas where id_alumno = ? order by modulo";
 
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+            
+        mysqli_stmt_bind_param($stmt,"i",$id);
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_assoc($consulta);
 
-}
-
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
+    }  
     // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
     //                                    $correo, $clase, $promocion, $matricula){
 
