@@ -13,4 +13,4 @@ if (mysqli_connect_errno()) {
 }
 
 // Definimos como una constante "NUM_ITEMS_BY_PAGE", esto solo mostrara 10 registros
-define('NUM_ITEMS_BY_PAGE', 10);
+define('NUM_ITEMS_BY_PAGE', 5);
