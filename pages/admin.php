@@ -7,9 +7,9 @@
   
   require_once '../components/cabecera.html';
   
-  require_once '../models/alumnos.php';
+  require_once '../models/alumno.php';
 
-  //$listaAlumno=Alumno::getAlumno();
+  $listaAlumno=alumno::getAlumnos();
 
 ?>
 
@@ -41,6 +41,17 @@
   </thead>
   
   <tbody class="table-group-divider">
+    <?php
+      foreach ($listaAlumno as $registro){
+      ?>
+        <tr>
+        <!-- Filas con todos los datos de los alumnos y labels que solo se mostrarán en mobiles -->
+          <td data-label="Id"><?php echo"{$registro['id']}";?></td>
+          <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
+          <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>
+        </tr>
+      <?php } ?>
+  </tbody>
 
 </table>
 
