@@ -30,10 +30,12 @@
   
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Fotografia</th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
-      <th scope="col">Nota</th>
+      <th scope="col">Apellido2</th>
+      <th scope="col">Correo</th>
+      <th scope="col">DNI</th>
       <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
       <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>
       <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
@@ -46,9 +48,12 @@
       ?>
         <tr>
         <!-- Filas con todos los datos de los alumnos y labels que solo se mostrarán en mobiles -->
-          <td data-label="Id"><?php echo"{$registro['id']}";?></td>
+          <td data-label="Id"><?php echo"{$registro['matricula']}";?></td>
           <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>
+          <td data-label="Apellido"><?php echo"{$registro['apellido2']}";?></td>
+          <td data-label="Apellido"><?php echo"{$registro['correo']}";?></td>
+          <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
         </tr>
       <?php } ?>
   </tbody>
