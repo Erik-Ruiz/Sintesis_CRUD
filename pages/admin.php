@@ -235,6 +235,9 @@
       <i class='bx bx-menu' ></i>
       <span class="text">Drop Down Sidebar</span>
     </div>
+
+    <!-- AÑADIR LA NVBAR PARA EL FILTRO -->
+
     <table class="table">
   
       <thead>
