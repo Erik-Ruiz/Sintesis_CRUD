@@ -36,7 +36,7 @@ final class Alumno extends persona{
 
         $stmt = mysql_stmt_init($conexion);
 
-        mysql_stmt_prepare($conexion, $sql)
+        mysql_stmt_prepare($conexion, $sql);
 
             msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
             $correo,, $clase, $promocion, $matricula);
