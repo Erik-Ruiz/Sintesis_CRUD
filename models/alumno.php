@@ -44,6 +44,7 @@ final class alumno extends persona{
 
         mysqli_stmt_close($stmt);
 
+        mysqli_fetch_assoc($resultadoconsulta);
         return $resultadoconsulta;
     }
 
