@@ -228,7 +228,7 @@ body{
   text-decoration: none;
   border: 1px solid #575a6d;
   background-color: #282A35;
-  color: white;
+  color: #E4E9F7;
 }
 
 .page-link a.active {
@@ -238,7 +238,7 @@ body{
 }
 
 .page-link a:hover:not(.active) {
-  background: white;
+  background: #E4E9F7;
   color: #282A35;
 }
 
