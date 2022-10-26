@@ -9,8 +9,11 @@
   
   require_once '../models/alumno.php';
 
-  $listaAlumno=alumno::getAlumnos();
-
+  $lista=alumno::getAlumnos();
+  $listaAlumno=$lista[0];
+  $total_pages=$lista[1];
+  $page=$lista[2];
+  
 ?>
 
 
@@ -22,94 +25,6 @@
 
     
 <body>
-
-<!-- <header>
-
-  <nav class="navbar bg-dark">
-    <div class="container-fluid">
-      <img src="../img/logo.png" alt="" width="50" height="24" class="d-inline-block align-text-top"></a>
-      <form class="d-flex" role="search" action="../controller/logout.php" method="POST">
-        <button class="btn btn-outline-danger" name="logout" type="submit">Log Out</button>
-      </form>
-    </div>
-  </nav>
-
-</header> -->
-
-
-<table class="table">
-<!-- <div class="form-group align-items-center">
-  <form action="#" method="POST">
-  
-    <label for="fname">Nombre</label>
-    <input type="text" name="name" value="Nombre";>
-
-    <label for="lname">Apellido</label>
-    <input type="text" name="edad" value="Apellido">
-
-    <label for="marks">Nota</label>
-    <input type="number" name="nota" value="Nota">
-
-    <br>
-    <input type="submit" class="btn btn-warning" value="Actualizar">
-    
-    <br>
-    <input type="submit" class="btn btn-danger" value="Eliminar">
-    
-    <br>
-    <input type="checkbox" class="form-check-input mt-0">
-
-  </form>
-
-</div> -->
-
-
-<!-- <div>
-
-<nav class="navbar navbar-dark bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <a class="navbar-brand" href="#">fas</a>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link disabled">Disabled</a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-
-  <table class="table">
-  
-  <thead>
-    <tr>
-      <th scope="col">Fotografia</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Apellido2</th>
-      <th scope="col">Correo</th>
-      <th scope="col">DNI</th>
-      <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
-      <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>
-      <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
-    </tr>
-  </thead>
-  
-  <tbody class="table-group-divider">
-   
-  </tbody>
-
-  </table>
-</div> -->
 <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
@@ -218,7 +133,7 @@
       <li>
     <div class="profile-details">
       <div class="profile-content">
-        <img src="image/profile.jpg" alt="profileImg">
+        <img src="image/profile.jpg" alt="">
       </div>
       <div class="name-job">
         <div class="profile_name">Prem Shahi</div>
@@ -235,23 +150,25 @@
       <i class='bx bx-menu' ></i>
       <span class="text">Drop Down Sidebar</span>
     </div>
-    <table class="table">
-  
-      <thead>
-        <tr>
-          <th scope="col">Matricula</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Apellido 2</th>
-          <th scope="col">Correo</th>
-          <th scope="col">DNI</th>
-          <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
-          <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>
-          <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
-        </tr>
-      </thead>
-      
-      <tbody class="table-group-divider">
+    <div class="tabla">
+      <table class="table">
+    
+        <thead>
+          <tr>
+            <th scope="col">Matricula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Apellido 2</th>
+            <th scope="col">Correo</th>
+            <th scope="col">DNI</th>
+            <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
+            <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>
+            <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
+          </tr>
+        </thead>
+        
+        <tbody class="table-group-divider">
+    
       <?php
       foreach ($listaAlumno as $registro){
       ?>
@@ -263,10 +180,32 @@
           <td data-label="Apellido"><?php echo"{$registro['apellido2']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['correo']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
+          <td scope="col"><input type="checkbox" class="form-check-input mt-0"></td>
+          <td scope="col"><input type="checkbox" class="form-check-input mt-0"></td>
         </tr>
       <?php } ?>
+        <tr>
+        <!-- Fila de paginación dinamica -->
+          <td colspan="8">
+          <div class="page-link">
+            <a href="admin.php?page=1">&laquo;</a>
+            <?php
+            for($i=1; $i<=$total_pages; $i++){
+              if($i==$page){?>
+                <a class="active" href="admin.php?page=<?php echo $i?>"><?php echo $i?></a>
+                <?php
+              }else{?>
+                <a href="admin.php?page=<?php echo $i ?>"><?php echo $i?></a>
+                <?php
+              }
+          }
+          ?>
+              <a href="admin.php?page=<?php echo $total_pages ?>">&raquo;</a>
+              </div>
+            </td>
+        </tr>
       </table>
-    
+      </div>
   </section>
   
 
