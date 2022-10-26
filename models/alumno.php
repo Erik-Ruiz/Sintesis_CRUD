@@ -2,7 +2,7 @@
 
 require_once("persona.php");
 
-final class alumno extends persona{
+final class Alumno extends persona{
     
     
     private $clase;
@@ -57,30 +57,34 @@ final class alumno extends persona{
         $sql="SELECT * FROM `tbl_alumno` WHERE id = ?";
 
 
-        $stmt = mysql_stmt_init($conexion);
+        $stmt = mysqli_stmt_init($conexion);
 
-        mysql_stmt_prepare($conexion, $sql);
+        mysqli_stmt_prepare($conexion, $sql);
 
         mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, $correo, $clase, $promocion, $matricula);
 
         mysqli_stmt_execute($stmt);
             
-        $resultadoconsulta=msqli_stmt_get_result($stmt);
+        $resultadoconsulta=mysqli_stmt_get_result($stmt);
 
         mysqli_fetch_assoc($resultadoconsulta);
 
         mysqli_stmt_close($stmt);
 
-        return $resultadoconsulta;
-    }
+            return $resultadoconsulta;
 
-    // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula){
+
+
+}
+
+    // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
+    //                                    $correo, $clase, $promocion, $matricula){
 
     //     require_once "../controller/config.php";
     //     require_once "../controller/connection.php";
         
-    //     $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
-    //      correo, clase, promocion, matricula";
+        // $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
+        //  correo, clase, promocion, matricula";
 
 
     //     $stmt = mysql_stmt_init($conexion);
