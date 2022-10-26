@@ -151,12 +151,58 @@
       <span class="text">Drop Down Sidebar</span>
     </div>
 
-    <!-- AÑADIR LA NVBAR PARA EL FILTRO -->
+    <!-- <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> -->
 
-    <div class="tabla">
+    <div class="tabla" style="overflow-x: scroll;">
       <table class="table">
-    
-        <thead>
+      <thead>
+       <form class="d-flex" role="search">
+          <tr>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
+            <th scope="col"><input type="submit" class="btn btn-info" value="Buscar"></th>
+          </tr>
+        </form>
+        </thead>
           <tr>
             <th scope="col">Matricula</th>
             <th scope="col">Nombre</th>
@@ -164,11 +210,10 @@
             <th scope="col">Apellido 2</th>
             <th scope="col">Correo</th>
             <th scope="col">DNI</th>
-            <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
-            <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>
+
             <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
           </tr>
-        </thead>
+        
         
         <tbody class="table-group-divider">
     
@@ -183,9 +228,8 @@
           <td data-label="Apellido"><?php echo"{$registro['apellido2']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['correo']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
-          <td scope="col"><input type="checkbox" class="form-check-input mt-0"></td>
-          <td scope="col"><input type="checkbox" class="form-check-input mt-0"></td>
-        </tr>
+          <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
+            <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>        </tr>
       <?php } ?>
         <tr>
         <!-- Fila de paginación dinamica -->
@@ -215,7 +259,11 @@
   <script src="../js/sidebar.js"></script>
 
 </body>
+<footer style="width: 100%; height: 50px; background: #e6a714;">
 
+  <h5 > © 2022  - Todos los derechos reservados</h5>
+
+</footer>
 
 </body>
 </html>
