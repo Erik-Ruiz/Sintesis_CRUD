@@ -1,0 +1,48 @@
+.container-alumno{
+    padding: 25px;
+    width: 100%;
+    gap: 20px;;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    justify-items: left;
+
+}
+
+.info-alumno{
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.img-alumno{
+    margin: auto;
+    width: 80%;
+}
+
+.info-materias{
+
+    width: 80%;
+}
+
+.materia{
+    padding: 5px;
+    border:  1px solid rgb(54, 54, 54);
+    border-radius: 10px;
+    width: 25%;
+}
+.materia-uf{
+
+    width: 100%;
+}
+.materia-tabla{
+    text-align: center;
+    margin: auto;
+    width: 95%;
+    border:  1px solid rgb(54, 54, 54);
+}
