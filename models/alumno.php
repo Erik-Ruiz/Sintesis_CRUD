@@ -2,7 +2,7 @@
 
 require_once("persona.php");
 
-final class alumno extends persona{
+final class Alumno extends persona{
     
     
     private $clase;
@@ -81,14 +81,13 @@ final class alumno extends persona{
 
 
 }
-
-    public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
+    public static function crearAlumno($nombre,$apellido, $apellido2, $dni, $telefono,
                                        $correo, $clase, $promocion, $matricula){
 
         require_once "../controller/config.php";
         require_once "../controller/connection.php";
         
-        $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
+        $sql="INSERT INTO tbl_alumno(nombre,apellido, apellido2, dni, telefono,
          correo, clase, promocion, matricula";
 
 
