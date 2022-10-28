@@ -1,6 +1,6 @@
 <?php
 session_start();
-$logout = $_POST['logout'];
+$logout = $_GET['logout'];
 
 if(isset($logout)){
     session_destroy();

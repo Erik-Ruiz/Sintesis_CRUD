@@ -133,13 +133,16 @@
       <li>
     <div class="profile-details">
       <div class="profile-content">
-        <img src="image/profile.jpg" alt="">
+        <?php
+          $img="../img/alum/".$_SESSION['img'].".png";
+        ?>
+        <img src=<?php echo $img; ?> />
       </div>
       <div class="name-job">
-        <div class="profile_name">Prem Shahi</div>
-        <div class="job">Web Desginer</div>
+        <div class="profile_name"><?php echo "$_SESSION[login]"; ?></div>
+        <div class="job"><?php echo $_SESSION['rol']; ?></div>
       </div>
-      <i class='bx bx-log-out' ></i>
+        <a name="logout" href="../controller/logout.php?logout=true" ><i class='bx bx-log-out' ></i></a>
     </div>
   </li>
 </ul>
@@ -188,7 +191,7 @@
   </div>
 </nav> -->
 
-    <div class="tabla" style="overflow-x: scroll;">
+    <div class="tabla" style="overflow: scroll;">
       <table class="table">
       <thead>
        <form class="d-flex" role="search">
