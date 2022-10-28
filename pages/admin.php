@@ -74,7 +74,7 @@
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Analytics</a></li>
+          <li><a class="link_name" href="./analytics.php">Analytics</a></li>
         </ul>
       </li>
 
