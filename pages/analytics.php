@@ -1,8 +1,20 @@
 <?php
-    require_once '../components/cabecera.html';
-    require_once '../models/alumno.php';
-?>
+  session_start();
+  if(empty($_SESSION['login'])){
+    echo "<script>location.href='../pages/login.php'</script>";
+    die();
+  }
+  
+  require_once '../components/cabecera.html';
+  
+  require_once '../models/alumno.php';
 
+  $lista=alumno::getAlumnos();
+  $listaAlumno=$lista[0];
+  $total_pages=$lista[1];
+  $page=$lista[2];
+  
+?>
 <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
@@ -82,6 +94,27 @@
       <i class='bx bx-menu' ></i>
       <span class="text">Drop Down Sidebar</span>
     </div>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Materia</th>
+                <th scope="col">Posición</th>
+                <th scope="col">Nota Media</th>
+                <th scope="col">Mejor Alumno</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            
+        </tbody>
+        </table>
+
+  </section>
+
+  <script src="../js/sidebar.js"></script>
+
+
 
     <!-- <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
