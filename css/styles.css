@@ -97,7 +97,12 @@ body{
     flex-direction: row;
     gap: 5px;
 }
-
+.editar{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 5px;
+}
 @media screen and (max-width:800px) {
 
     .logo_y_login{
