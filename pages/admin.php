@@ -252,8 +252,8 @@
             </td>
         </tr>
       </table>
-      </div>
-      <footer style="width: 100%; height: 50px; background: #e6a714;">
+    </div>
+    <footer style="width: 100%; height: 50px; background: #e6a714;">
 
   <h5 > © 2022  - Todos los derechos reservados</h5>
 
