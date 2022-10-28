@@ -142,7 +142,7 @@
         <div class="profile_name"><?php echo "$_SESSION[login]"; ?></div>
         <div class="job"><?php echo $_SESSION['rol']; ?></div>
       </div>
-      <i class='bx bx-log-out' ></i>
+        <a name="logout" href="../controller/logout.php?logout=true" ><i class='bx bx-log-out' ></i></a>
     </div>
   </li>
 </ul>
@@ -191,7 +191,7 @@
   </div>
 </nav> -->
 
-    <div class="tabla" style="overflow-x: scroll;">
+    <div class="tabla" style="overflow: scroll;">
       <table class="table">
       <thead>
        <form class="d-flex" role="search">
@@ -256,17 +256,18 @@
         </tr>
       </table>
       </div>
+      <footer style="width: 100%; height: 50px; background: #e6a714;">
+
+  <h5 > © 2022  - Todos los derechos reservados</h5>
+
+</footer>
   </section>
   
 
   <script src="../js/sidebar.js"></script>
 
 </body>
-<footer style="width: 100%; height: 50px; background: #e6a714;">
 
-  <h5 > © 2022  - Todos los derechos reservados</h5>
-
-</footer>
 
 </body>
 </html>
