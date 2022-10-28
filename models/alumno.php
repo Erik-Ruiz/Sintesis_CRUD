@@ -27,7 +27,7 @@ final class Alumno extends Persona{
     public static function getAlumnos(){
         
         //require_once "../controller/config.php";
-        $conexion=self::bd();
+        $conexion=self::bd();//conexion con la bd
 
         define('NUM_ITEMS_BY_PAGE', 16);
 
