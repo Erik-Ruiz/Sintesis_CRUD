@@ -142,8 +142,8 @@
   </div>
 </nav> -->
 
-    <div class="tabla" style="overflow: scroll;">
-      <table class="table">
+    <div class="tabla" style="overflow: scroll;height:80vh">
+      <table class="table" style="text-align:center ;">
       <thead>
        <form class="d-flex" role="search">
           <tr>
@@ -153,7 +153,7 @@
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col"><input type="submit" class="btn btn-info" value="Buscar"></th>
+            <th scope="col" colspan="2"><input type="submit" class="btn btn-info" value="Buscar"></th>
           </tr>
         </form>
         </thead>
@@ -164,7 +164,7 @@
             <th scope="col">Apellido 2</th>
             <th scope="col">Correo</th>
             <th scope="col">DNI</th>
-
+            <th scope="col">Editar</th>
             <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
           </tr>
         
@@ -182,8 +182,16 @@
           <td data-label="Apellido"><?php echo"{$registro['apellido2']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['correo']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
-          <th scope="col"><input type="submit" class="btn btn-warning" value="Actualizar"></th>
-            <th scope="col"><input type="submit" class="btn btn-danger" value="Eliminar"></th>        </tr>
+          <th scope="col">
+            <div class="editar">
+              <input type="submit" class="btn btn-warning" value="Actualizar">
+              <input type="submit" class="btn btn-danger" value="Eliminar">
+            </div>
+
+          </th>
+          <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>        
+          
+          </tr>
       <?php } ?>
         <tr>
         <!-- Fila de paginación dinamica -->

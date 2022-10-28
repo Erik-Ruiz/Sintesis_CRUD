@@ -27,13 +27,15 @@ final class Alumno extends Persona{
 
     }
     private function bd(){
-        
+        require  "../controller/connection.php";
+        return $conexion;
     }
     public static function getAlumnos(){
         
         //require_once "../controller/config.php";
-        include  "../controller/connection.php";
-        define('NUM_ITEMS_BY_PAGE', 6);
+        $conexion=self::bd();
+
+        define('NUM_ITEMS_BY_PAGE', 16);
 
         //Parte paginacion
         $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
@@ -82,7 +84,7 @@ final class Alumno extends Persona{
     public static function getAlumnoId($id){
 
         //require_once "../controller/config.php";
-        include  "../controller/connection.php";
+        $conexion=self::bd();
         
 
         $sql="SELECT * FROM tbl_alumno where id = ?";
@@ -105,7 +107,7 @@ final class Alumno extends Persona{
     public static function getMateriasAlumno($id){
 
         //require_once "../controller/config.php";
-        include "../controller/connection.php";
+        $conexion=self::bd();
         
 
         $sql="SELECT modulo FROM tbl_notas where id_alumno = ? group by modulo ORDER BY modulo";
@@ -126,8 +128,7 @@ final class Alumno extends Persona{
 
     public static function getNotasAlumno($id,$modulo){
 
-        //require_once "../controller/config.php";
-        include "../controller/connection.php";
+        $conexion=self::bd();
         
 
         $sql="SELECT id_notas,uf,nota FROM tbl_notas where id_alumno = ? and modulo = ? ;";
