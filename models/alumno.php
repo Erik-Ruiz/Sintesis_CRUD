@@ -2,7 +2,7 @@
 
 require_once("persona.php");
 
-final class Alumno extends persona{
+final class Alumno extends Persona{
     
     
     private $clase;
@@ -26,31 +26,63 @@ final class Alumno extends persona{
         $this->matricula = $matricula;
 
     }
+    private function bd(){
+        
+    }
     public static function getAlumnos(){
         
-        require_once "../controller/config.php";
-        require_once "../controller/connection.php";
+        //require_once "../controller/config.php";
+        include  "../controller/connection.php";
+        define('NUM_ITEMS_BY_PAGE', 6);
 
-        $sql="SELECT matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno ";
+        //Parte paginacion
+        $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
+        $row = $resultado->fetch_assoc();
+        // Asignamos el numero de resultados a estas variables
+        $num_total_rows = $row['total_alu'];
+        if ($num_total_rows > 0) {
+            $page = false;
+    
+        //Examinamos la pagina a mostrar y el inicio del registro a mostrar
+        if (isset($_GET["page"])) {
+            $page = $_GET["page"];
+        }
+    
+        if (!$page) {
+            $start = 0;
+            $page = 1;
+        } else {
+            $start = ($page - 1) * NUM_ITEMS_BY_PAGE;
+        }
+        //Calculo el total de paginas
+        $total_pages = ceil($num_total_rows / NUM_ITEMS_BY_PAGE);
+        }
+  
+        $paginas = NUM_ITEMS_BY_PAGE;
+
+
+        //Parte alumno
+        $sql="SELECT matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT $start, $paginas";
 
 
         $stmt = mysqli_stmt_init($conexion);
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
-            
+                
         $resultadoconsulta= mysqli_stmt_get_result($stmt);
 
         mysqli_fetch_assoc($resultadoconsulta);
 
         mysqli_stmt_close($stmt);
         mysqli_fetch_assoc($resultadoconsulta);
-        return $resultadoconsulta;
+        $results = array($resultadoconsulta,$total_pages,$page);
+        return $results;
     }
 
     public static function getAlumnoId($id){
 
-        require_once "../controller/config.php";
-        require_once "../controller/connection.php";
+        //require_once "../controller/config.php";
+        include  "../controller/connection.php";
         
 
         $sql="SELECT * FROM tbl_alumno where id = ?";
@@ -69,50 +101,74 @@ final class Alumno extends persona{
         return $resultadoconsulta;
     }   
 
-    public static function getNotasAlumno($id){
-
-        require_once "../controller/config.php";
-        require_once "../controller/connection.php";
         
-        $sql="SELECT modulo,uf,nota FROM tbl_notas where id_alumno = ? order by modulo";
+    public static function getMateriasAlumno($id){
+
+        //require_once "../controller/config.php";
+        include "../controller/connection.php";
+        
+
+        $sql="SELECT modulo FROM tbl_notas where id_alumno = ? group by modulo ORDER BY modulo";
 
         $stmt = mysqli_stmt_init($conexion);
         mysqli_stmt_prepare($stmt,$sql);
-            
+    
         mysqli_stmt_bind_param($stmt,"i",$id);
         mysqli_stmt_execute($stmt);
         $consulta = mysqli_stmt_get_result($stmt);
     
-        $resultadoconsulta=mysqli_fetch_assoc($consulta);
+        $resultadoconsulta=mysqli_fetch_all($consulta);  //mysqli_fetch_assoc();
 
         mysqli_stmt_close($stmt);
         
         return $resultadoconsulta;
-    }  
+    } 
+
+    public static function getNotasAlumno($id,$modulo){
+
+        //require_once "../controller/config.php";
+        include "../controller/connection.php";
+        
+
+        $sql="SELECT id_notas,uf,nota FROM tbl_notas where id_alumno = ? and modulo = ? ;";
+
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+    
+        mysqli_stmt_bind_param($stmt,"is",$id,$modulo);
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_all($consulta);  //mysqli_fetch_assoc();
+        //$resultadoconsulta=mysqli_fetch_assoc($consulta);
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
+    } 
     // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
     //                                    $correo, $clase, $promocion, $matricula){
 
     //     require_once "../controller/config.php";
     //     require_once "../controller/connection.php";
         
-        // $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
-        //  correo, clase, promocion, matricula";
+    //     $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
+    //      correo, clase, promocion, matricula";
 
 
-    //     $stmt = mysql_stmt_init($conexion);
+    //     $stmt = mysqli_stmt_init($conexion);
 
-    //     mysql_stmt_prepare($conexion, $sql)
+    //     mysqli_stmt_prepare($conexion, $sql);
 
-    //         msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
-    //         $correo,, $clase, $promocion, $matricula);
+    //         mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
+    //         $correo, $clase, $promocion, $matricula);
 
-    //         msqli_stmt_execute($stmt);
+    //         mysqli_stmt_execute($stmt);
             
-    //         $resultadoconsulta=msqli_stmt_get_result($stmt);
+    //         $resultadoconsulta=mysqli_stmt_get_result($stmt);
 
-    //         msqli_fetch_assoc($resultadoconsulta);
+    //         mysqli_fetch_assoc($resultadoconsulta);
 
-    //         msqli_stmt_close($stmt);
+    //         mysqli_stmt_close($stmt);
 
     //     }
 
@@ -125,19 +181,19 @@ final class Alumno extends persona{
     //     $sql="DELETE FROM tbl_alumno WHERE id=?";
 
 
-    //         $stmt = mysql_stmt_init($conexion);
+    //         $stmt = mysqli_stmt_init($conexion);
 
-    //         mysql_stmt_prepare($conexion, $sql)
+    //         mysqli_stmt_prepare($conexion, $sql);
 
-    //         msqli_stmt_bind_param($stmt, "i", $id);
+    //         mysqli_stmt_bind_param($stmt, "i", $id);
 
-    //         msqli_stmt_execute($stmt);
+    //         mysqli_stmt_execute($stmt);
             
-    //         $resultadoconsulta=msqli_stmt_get_result($stmt);
+    //         $resultadoconsulta=mysqli_stmt_get_result($stmt);
 
-    //         msqli_fetch_assoc($resultadoconsulta);
+    //         mysqli_fetch_assoc($resultadoconsulta);
 
-    //         msqli_stmt_close($stmt);
+    //         mysqli_stmt_close($stmt);
 
     
     // }
@@ -152,82 +208,82 @@ final class Alumno extends persona{
     //     $sql="UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=?, matricula=? WHERE id=?";
 
 
-    //    $stmt = mysql_stmt_init($conexion);
+    //    $stmt = mysqli_stmt_init($conexion);
 
-    //    mysql_stmt_prepare($conexion, $sql)
+    //    mysqli_stmt_prepare($conexion, $sql);
 
-    //        msqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
-    //        $correo,, $clase, $promocion, $matricula);
+    //        mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
+    //        $correo, $clase, $promocion, $matricula);
 
-    //        msqli_stmt_execute($stmt);
+    //        mysqli_stmt_execute($stmt);
            
-    //        $resultadoconsulta=msqli_stmt_get_result($stmt);
+    //        $resultadoconsulta=mysqli_stmt_get_result($stmt);
 
-    //        msqli_fetch_assoc($resultadoconsulta);
+    //        mysqli_fetch_assoc($resultadoconsulta);
 
-    //        msqli_stmt_close($stmt);
+    //        mysqli_stmt_close($stmt);
 
 
     // }
 
-    // /**
-    //  * Get the value of clase
-    //  */ 
-    // public function getClase()
-    // {
-    //     return $this->clase;
-    // }
+    /**
+     * Get the value of clase
+     */ 
+    public function getClase()
+    {
+        return $this->clase;
+    }
 
-    // /**
-    //  * Set the value of clase
-    //  *
-    //  * @return  self
-    //  */ 
-    // public function setClase($clase)
-    // {
-    //     $this->clase = $clase;
+    /**
+     * Set the value of clase
+     *
+     * @return  self
+     */ 
+    public function setClase($clase)
+    {
+        $this->clase = $clase;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // /**
-    //  * Get the value of promocion
-    //  */ 
-    // public function getPromocion()
-    // {
-    //     return $this->promocion;
-    // }
+    /**
+     * Get the value of promocion
+     */ 
+    public function getPromocion()
+    {
+        return $this->promocion;
+    }
 
-    // /**
-    //  * Set the value of promocion
-    //  *
-    //  * @return  self
-    //  */ 
-    // public function setPromocion($promocion)
-    // {
-    //     $this->promocion = $promocion;
+    /**
+     * Set the value of promocion
+     *
+     * @return  self
+     */ 
+    public function setPromocion($promocion)
+    {
+        $this->promocion = $promocion;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // /**
-    //  * Get the value of matricula
-    //  */ 
-    // public function getMatricula()
-    // {
-    //     return $this->matricula;
-    // }
+    /**
+     * Get the value of matricula
+     */ 
+    public function getMatricula()
+    {
+        return $this->matricula;
+    }
 
-    // /**
-    //  * Set the value of matricula
-    //  *
-    //  * @return  self
-    //  */ 
-    // public function setMatricula($matricula)
-    // {
-    //     $this->matricula = $matricula;
+    /**
+     * Set the value of matricula
+     *
+     * @return  self
+     */ 
+    public function setMatricula($matricula)
+    {
+        $this->matricula = $matricula;
 
-    //     return $this;
-    // }
+        return $this;
+    }
     
 }

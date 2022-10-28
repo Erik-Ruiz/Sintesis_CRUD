@@ -213,6 +213,46 @@ body{
   font-size: 12px;
 }
 
+/* Estilos de la barra de Paginacion */
+
+.page-link {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.page-link a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #575a6d;
+  background-color: #282A35;
+  color: white;
+}
+
+.page-link a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.page-link a:hover:not(.active) {
+  background: white;
+  color: #282A35;
+}
+
+.page-link a:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.page-link a:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+
 
 .home-section{
   position: relative;
