@@ -1,8 +1,8 @@
 <?php
 
-$server = 'localhost';
-$username = 'root';
-$password = '';
+$server = '192.168.24.109';
+$username = 'admin1';
+$password = 'admin1234';
 $bd = 'bd_sintesis';
 // Nos conectamos a la base de datos mediante la funcion mysqli_connect
 $conexion = mysqli_connect($server,$username,$password,$bd);
