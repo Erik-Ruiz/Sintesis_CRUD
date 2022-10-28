@@ -196,7 +196,15 @@
         <tr>
         <!-- Fila de paginación dinamica -->
           <td colspan="8">
-          <div class="page-link">
+          
+            </td>
+        </tr>
+      </table>
+    </div>
+
+  </section>
+  
+  <div class="page-link">
             <a href="admin.php?page=1">&laquo;</a>
             <?php
             for($i=1; $i<=$total_pages; $i++){
@@ -211,14 +219,6 @@
           ?>
               <a href="admin.php?page=<?php echo $total_pages ?>">&raquo;</a>
               </div>
-            </td>
-        </tr>
-      </table>
-    </div>
-
-  </section>
-  
-
   <script src="../js/sidebar.js"></script>
 
 </body>

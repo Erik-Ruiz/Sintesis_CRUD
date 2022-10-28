@@ -10,16 +10,10 @@ final class Alumno extends Persona{
     private $matricula;
 
 
-    public function __construct(){
+    public function __construct($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
 
         parent::__construct($nombre, $apellido, $apellido2, $dni, $telefono, $correo);
         
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->apellido2 = $apellido2;
-        $this->dni = $dni;
-        $this->telefono = $telefono;
-        $this->correo = $correo;
 
         $this->clase = $clase;
         $this->promocion = $promocion;
@@ -176,23 +170,27 @@ final class Alumno extends Persona{
 
     public static function eliminarAlumno($id){
 
-        require_once "../controller/config.php";
-        require_once "../controller/connection.php";
-            
-        $sql="DELETE FROM tbl_alumno WHERE id=?";
+        $conexion=self::bd();
+          
+        try{
+            $sql="DELETE FROM tbl_alumno WHERE id=?";
 
 
             $stmt = mysqli_stmt_init($conexion);
-
-            mysqli_stmt_prepare($stmt, $sql);
-
-            mysqli_stmt_bind_param($stmt, "i", $id);
-
+            mysqli_stmt_prepare($stmt,$sql);
+        
+            mysqli_stmt_bind_param($stmt,"is",$id);
             mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt); 
+            $ok=true;
+        }catch(Exception $e){
+            $ok=false;
+        }finally{
+            return $ok;
+        }
 
-            mysqli_stmt_close($stmt);
 
-    
+        
     }
 
     // public static function updateAlumno($nombre,$apellido, $apellido2, $dni, $telefono,
