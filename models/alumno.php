@@ -173,16 +173,40 @@ final class Alumno extends Persona{
         $conexion=self::bd();
           
         try{
+            $sql="SELECT matricula FROM tbl_alumno where id = ?";
+
+            $stmt = mysqli_stmt_init($conexion);
+            mysqli_stmt_prepare($stmt,$sql);
+                
+            mysqli_stmt_bind_param($stmt,"i",$id);
+            mysqli_stmt_execute($stmt);
+            $consulta = mysqli_stmt_get_result($stmt);
+        
+            $matricula=mysqli_fetch_assoc($consulta);
+
             $sql="DELETE FROM tbl_alumno WHERE id=?";
 
 
             $stmt = mysqli_stmt_init($conexion);
             mysqli_stmt_prepare($stmt,$sql);
         
-            mysqli_stmt_bind_param($stmt,"is",$id);
+            mysqli_stmt_bind_param($stmt,"i",$id);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt); 
+            mysqli_stmt_close($stmt);
+
+            $sql="DELETE FROM tbl_notas WHERE id_alumno=?";
+
+            $stmt = mysqli_stmt_init($conexion);
+            mysqli_stmt_prepare($stmt,$sql);
+        
+            mysqli_stmt_bind_param($stmt,"i",$id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
             $ok=true;
+
+            unlink('../img/alum/'.$matricula[0]['matricula'].'.png');
+
         }catch(Exception $e){
             $ok=false;
         }finally{
