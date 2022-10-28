@@ -27,10 +27,11 @@
   <p type="Nombre:"><input></input></p>
   <p type="Primer apellido:"><input></input></p>
   <p type="Segundo apellido:"><input></input></p>
-  <p type="correo:"><input></input></p>
+  <p type="Correo:"><input></input></p>
   <p type="DNI:"><input></input></p>
-  
+
   <button>Guardar</button>
+  <p><input type="hidden"></input></p>
 </form>
 
 </body>
