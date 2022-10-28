@@ -33,7 +33,7 @@ final class Alumno extends Persona{
     public static function getAlumnos(){
         
         //require_once "../controller/config.php";
-        $conexion=self::bd();
+        $conexion=self::bd();//conexion con la bd
 
         define('NUM_ITEMS_BY_PAGE', 16);
 
@@ -174,30 +174,26 @@ final class Alumno extends Persona{
     //     }
 
 
-    // public static function eliminarAlumno($id){
+    public static function eliminarAlumno($id){
 
-    //     require_once "../controller/config.php";
-    //     require_once "../controller/connection.php";
+        require_once "../controller/config.php";
+        require_once "../controller/connection.php";
             
-    //     $sql="DELETE FROM tbl_alumno WHERE id=?";
+        $sql="DELETE FROM tbl_alumno WHERE id=?";
 
 
-    //         $stmt = mysqli_stmt_init($conexion);
+            $stmt = mysqli_stmt_init($conexion);
 
-    //         mysqli_stmt_prepare($conexion, $sql);
+            mysqli_stmt_prepare($stmt, $sql);
 
-    //         mysqli_stmt_bind_param($stmt, "i", $id);
+            mysqli_stmt_bind_param($stmt, "i", $id);
 
-    //         mysqli_stmt_execute($stmt);
-            
-    //         $resultadoconsulta=mysqli_stmt_get_result($stmt);
+            mysqli_stmt_execute($stmt);
 
-    //         mysqli_fetch_assoc($resultadoconsulta);
-
-    //         mysqli_stmt_close($stmt);
+            mysqli_stmt_close($stmt);
 
     
-    // }
+    }
 
     // public static function updateAlumno($nombre,$apellido, $apellido2, $dni, $telefono,
     //                                     $correo, $clase, $promocion, $matricula){
