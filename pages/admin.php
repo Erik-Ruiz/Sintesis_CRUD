@@ -34,13 +34,14 @@
       <li>
         <a href="#">
           <i class='bx bx-grid-alt' ></i>
-          <span class="link_name">Dashboard</span>
+          <span class="link_name">Crear Alumno</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Category</a></li>
+          <li><a class="link_name" href="#">Crear Correo</a></li>
         </ul>
       </li>
-      <li>
+
+      <!-- <li>
         <div class="iocn-link">
           <a href="#">
             <i class='bx bx-collection' ></i>
@@ -54,22 +55,19 @@
           <li><a href="#">JavaScript</a></li>
           <li><a href="#">PHP & MySQL</a></li>
         </ul>
-      </li>
+      </li> -->
+      
       <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-book-alt' ></i>
-            <span class="link_name">Posts</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Posts</a></li>
-          <li><a href="#">Web Design</a></li>
-          <li><a href="#">Login Form</a></li>
-          <li><a href="#">Card Design</a></li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Crear Correo</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Crear Correo</a></li>
         </ul>
       </li>
+
       <li>
         <a href="#">
           <i class='bx bx-pie-chart-alt-2' ></i>
@@ -79,70 +77,26 @@
           <li><a class="link_name" href="#">Analytics</a></li>
         </ul>
       </li>
+
+      
+
+      
       <li>
-        <a href="#">
-          <i class='bx bx-line-chart' ></i>
-          <span class="link_name">Chart</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Chart</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-plug' ></i>
-            <span class="link_name">Plugins</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+        <div class="profile-details">
+          <div class="profile-content">
+            <?php
+              $img="../img/alum/".$_SESSION['img'].".png";
+            ?>
+            <img src=<?php echo $img; ?> />
+          </div>
+          <div class="name-job">
+            <div class="profile_name"><?php echo "$_SESSION[login]"; ?></div>
+            <div class="job"><?php echo $_SESSION['rol']; ?></div>
+          </div>
+            <a name="logout" href="../controller/logout.php?logout=true" ><i class='bx bx-log-out' ></i></a>
         </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Plugins</a></li>
-          <li><a href="#">UI Face</a></li>
-          <li><a href="#">Pigments</a></li>
-          <li><a href="#">Box Icons</a></li>
-        </ul>
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-compass' ></i>
-          <span class="link_name">Explore</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Explore</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-history'></i>
-          <span class="link_name">History</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">History</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog' ></i>
-          <span class="link_name">Setting</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Setting</a></li>
-        </ul>
-      </li>
-      <li>
-    <div class="profile-details">
-      <div class="profile-content">
-        <img src="image/profile.jpg" alt="">
-      </div>
-      <div class="name-job">
-        <div class="profile_name">Prem Shahi</div>
-        <div class="job">Web Desginer</div>
-      </div>
-      <i class='bx bx-log-out' ></i>
-    </div>
-  </li>
-</ul>
+    </ul>
   </div>
 
   <section class="home-section">
@@ -188,7 +142,7 @@
   </div>
 </nav> -->
 
-    <div class="tabla" style="overflow-x: scroll;">
+    <div class="tabla" style="overflow: scroll;">
       <table class="table">
       <thead>
        <form class="d-flex" role="search">
@@ -252,18 +206,19 @@
             </td>
         </tr>
       </table>
-      </div>
+    </div>
+    <footer style="width: 100%; height: 50px; background: #e6a714;">
+
+  <h5 > © 2022  - Todos los derechos reservados</h5>
+
+</footer>
   </section>
   
 
   <script src="../js/sidebar.js"></script>
 
 </body>
-<footer style="width: 100%; height: 50px; background: #e6a714;">
 
-  <h5 > © 2022  - Todos los derechos reservados</h5>
-
-</footer>
 
 </body>
 </html>
