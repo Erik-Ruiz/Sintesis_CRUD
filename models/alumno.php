@@ -58,7 +58,7 @@ final class Alumno extends Persona{
 
 
         //Parte alumno
-        $sql="SELECT matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT $start, $paginas";
+        $sql="SELECT id, matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT $start, $paginas";
 
 
         $stmt = mysqli_stmt_init($conexion);
@@ -204,8 +204,12 @@ final class Alumno extends Persona{
             mysqli_stmt_close($stmt);
 
             $ok=true;
-
-            unlink('../img/alum/'.$matricula[0]['matricula'].'.png');
+            try{
+              unlink('../img/alum/'.$matricula[0]['matricula'].'.png');  
+            }catch(Exception $e){
+                
+            }
+            
 
         }catch(Exception $e){
             $ok=false;

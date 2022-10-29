@@ -15,6 +15,10 @@ require '../config/correo.conf.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
+if(empty($_POST['correos'])){
+    
+}
+
 try {
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
@@ -27,7 +31,7 @@ try {
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('sergio.comsace@gmail.com', 'no-reply');
+    $mail->setFrom(EMAIL, 'no-reply');
     $mail->addAddress('100006393.joan23@fje.edu');     //Add a recipient
     
 

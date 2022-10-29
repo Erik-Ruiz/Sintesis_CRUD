@@ -1,8 +1,10 @@
 <?php
   session_start();
+
   if(empty($_SESSION['login'])){
-    echo "<script>location.href='../pages/login.php'</script>";
-    die();
+
+    //echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    
   }
   
   require_once '../components/cabecera.html';
@@ -59,12 +61,12 @@
       
       <li>
       <li>
-        <a href="#">
+        <a href="./correo.php">
           <i class='bx bx-line-chart' ></i>
           <span class="link_name">Crear Correo</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Crear Correo</a></li>
+          <li><a class="link_name" href="./correo.php">Crear Correo</a></li>
         </ul>
       </li>
 
@@ -147,6 +149,7 @@
       <thead>
        <form class="d-flex" role="search">
           <tr>
+            <th></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
@@ -158,6 +161,7 @@
         </form>
         </thead>
           <tr>
+            <th scope="col">IMG</th>
             <th scope="col">Matricula</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
@@ -165,7 +169,7 @@
             <th scope="col">Correo</th>
             <th scope="col">DNI</th>
             <th scope="col">Editar</th>
-            <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
+            <th scope="col"><input id="check_all" onchange="correo(this)" type="checkbox" class="form-check-input mt-0"></th>
           </tr>
         
         
@@ -176,6 +180,7 @@
       ?>
         <tr>
         <!-- Filas con todos los datos de los alumnos y labels que solo se mostrarán en mobiles -->
+          <td data-label="Img"><img src="../img/alum/<?php echo"{$registro['matricula']}";?>.png"/></td>
           <td data-label="Id"><?php echo"{$registro['matricula']}";?></td>
           <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>
@@ -184,12 +189,18 @@
           <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
           <th scope="col">
             <div class="editar">
-              <input type="submit" class="btn btn-warning" value="Actualizar">
-              <input type="submit" class="btn btn-danger" value="Eliminar">
+            
+
+            <input type="button" class="btn btn-success" value="Ver" onclick=verAlumno(<?php echo"{$registro['id']})";?>>
+
+            <a href="admin.php?id=<?php echo $registro['id']; ?>"><input type="button" class="btn btn-warning" value="Actualizar"></a>
+
+
+              <a href="../controller/eliminarcontroller.php?id=<?php echo $registro['id']; ?>"><input class="btn btn-danger" value="Eliminar" type="button"></a>
             </div>
 
           </th>
-          <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>        
+          <th scope="col"><input id="check_<?php echo $registro['id']; ?>" onchange="correo(this)" type="checkbox" class="form-check-input mt-0"></th>        
           
           </tr>
       <?php } ?>
@@ -220,6 +231,7 @@
               <a href="admin.php?page=<?php echo $total_pages ?>">&raquo;</a>
               </div>
   <script src="../js/sidebar.js"></script>
+  <script src="../js/veralumnos.js"></script>
 
 </body>
 
