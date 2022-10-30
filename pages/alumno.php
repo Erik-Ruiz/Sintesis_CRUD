@@ -52,6 +52,7 @@
           <tr>
             <th>UF</th>
             <th>Nota</th>
+            <th>Editar</th>
           </tr>
           <!-- Bucle UFS -->
           <?php $infoNotas=Alumno::getNotasAlumno($id,$infoMaterias[$i][0]); 
@@ -62,6 +63,9 @@
           <tr>
             <td><?php echo $infoNotas[$u][1]; ?></td>
             <td><?php echo $infoNotas[$u][2]; ?></td>
+            <td><button type="button" class="btn btn-success" onclick="editNota(<?php echo $infoNotas[$u][0]; ?>,<?php echo $id ?>)">Edit</button>
+              
+            </td>
           </tr>
 
           <?php
@@ -79,6 +83,6 @@
   </div>
 
 </div>
-
+<script src="../js/veralumnos.js"></script>
 </body>
 </html>

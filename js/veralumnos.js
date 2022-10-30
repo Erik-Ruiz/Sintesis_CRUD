@@ -39,3 +39,6 @@ const resetStorage =()=>{
     localStorage.setItem('correos', '')
 }
 
+const editNota =(id,alumno)=>{
+    location.href = "../pages/notasalumno.php?id="+id+"&idAlumno="+alumno;
+}
