@@ -95,6 +95,27 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
         return $resultadoconsulta;
+    }
+    public static function getMediaAlumno($id){
+
+        //require_once "../controller/config.php";
+        $conexion=self::bd();
+        
+
+        $sql="SELECT avg(nota) as media FROM tbl_notas where id_alumno = ?";
+
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+            
+        mysqli_stmt_bind_param($stmt,"i",$id);
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_assoc($consulta);
+
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
     }   
 
         

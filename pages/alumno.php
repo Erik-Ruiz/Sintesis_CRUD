@@ -30,6 +30,7 @@
     <img src=<?php echo "../img/alum/".$infoAlumno['matricula'].".png"; ?> alt="" class="img-alumno"/>
     <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido2']; ?></p>
     <p>DAW 2</p>
+    <p>Media: <?php echo Alumno::getMediaAlumno($infoAlumno['id'])['media'] ?></p>
     <button>Guardar</button>
   </div>
 
