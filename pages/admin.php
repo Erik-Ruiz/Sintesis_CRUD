@@ -160,7 +160,7 @@
             <th scope="col">Apellido 2</th>
             <th scope="col">Correo</th>
             <th scope="col">DNI</th>
-            <th scope="col">Editar</th>
+            <th scope="col">Opciones</th>
             <th scope="col"><input id="check_all" onchange="correo(this)" type="checkbox" class="form-check-input mt-0"></th>
           </tr>
         
@@ -176,9 +176,9 @@
           <td data-label="Id"><?php echo"{$registro['matricula']}";?></td>
           <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>
-          <td data-label="Apellido"><?php echo"{$registro['apellido2']}";?></td>
-          <td data-label="Apellido"><?php echo"{$registro['correo']}";?></td>
-          <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
+          <td data-label="Apellido2"><?php echo"{$registro['apellido2']}";?></td>
+          <td data-label="Correo"><?php echo"{$registro['correo']}";?></td>
+          <td data-label="DNI"><?php echo"{$registro['dni']}";?></td>
           <th scope="col">
             <div class="editar">
             

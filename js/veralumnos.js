@@ -1,14 +1,18 @@
 // localStorage.setItem('correos', "");
-
-for (let i = 0; i < localStorage.getItem('correos').split(',').length; i++) {
-    try {
-        let check = document.getElementById('check_'+localStorage.getItem('correos').split(',')[i])
-        check.checked = true;
-    } catch (error) {
+try{
+    for (let i = 0; i < localStorage.getItem('correos').split(',').length; i++) {
+        try {
+            let check = document.getElementById('check_'+localStorage.getItem('correos').split(',')[i])
+            check.checked = true;
+        } catch (error) {
+             
+        }
         
     }
-    
+}catch(Exception){
+
 }
+
 const verAlumno =(id)=>{
     location.href = "../pages/alumno.php?id="+id;
 }
@@ -16,12 +20,12 @@ const verAlumno =(id)=>{
 const correo =(element)=>{
     let id = element.id.split('_')[1];
     
-    let array = localStorage.getItem('correos').split(',');
-
+    let array = localStorage.getItem('correos');
+    
     if(element.checked){
-       array.push(id) 
+       array+=`,${id}` 
     }else{
-        array = array.filter(function(item) {
+        array = array.split(',').filter(function(item) {
             return item !== id
         })
     }
@@ -30,3 +34,8 @@ const correo =(element)=>{
     console.log(localStorage.getItem('correos'))
 
 }
+
+const resetStorage =()=>{
+    localStorage.setItem('correos', '')
+}
+

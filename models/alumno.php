@@ -139,7 +139,64 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
         return $resultadoconsulta;
-    } 
+    }
+
+    public static function getGeneralNota(){
+
+        $conexion=self::bd();
+        
+
+        $sql="SELECT avg(nota) as media,modulo, max(nota) as 'Mejor' FROM tbl_notas group by modulo order by media desc;";
+
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+    
+        //mysqli_stmt_bind_param($stmt,"is",$id,$modulo);
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_all($consulta);  //mysqli_fetch_assoc();
+        //$resultadoconsulta=mysqli_fetch_assoc($consulta);
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
+    }
+    public static function getCorreoAlumno($id){
+
+        $conexion=self::bd();
+
+        $sql="SELECT correo FROM tbl_alumno WHERE id = ?";  
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+        
+        mysqli_stmt_bind_param($stmt,"i",$id);
+        
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_all($consulta);  //mysqli_fetch_assoc();
+        //$resultadoconsulta=mysqli_fetch_assoc($consulta);
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
+    }
+    public static function getAllCorreoAlumno(){
+
+        $conexion=self::bd();
+
+        $sql="SELECT correo FROM tbl_alumno";  
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+        
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_all($consulta);  //mysqli_fetch_assoc();
+        //$resultadoconsulta=mysqli_fetch_assoc($consulta);
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
+    }
     // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
     //                                    $correo, $clase, $promocion, $matricula){
 
@@ -247,7 +304,7 @@ final class Alumno extends Persona{
     //        mysqli_stmt_close($stmt);
 
 
-    // }
+    // }SELECT avg(nota) as media,modulo, max(nota) as "Mejor Nota" FROM tbl_notas group by modulo order by media desc;
 
     /**
      * Get the value of clase

@@ -6,13 +6,8 @@
   }
   
   require_once '../components/cabecera.html';
-  
-  require_once '../models/alumno.php';
 
-  $lista=alumno::getAlumnos();
-  $listaAlumno=$lista[0];
-  $total_pages=$lista[1];
-  $page=$lista[2];
+  require_once '../models/alumno.php';
   
 ?>
 <div class="sidebar close">
@@ -100,13 +95,30 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Materia</th>
-                <th scope="col">Posición</th>
                 <th scope="col">Nota Media</th>
                 <th scope="col">Mejor Alumno</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            
+        <?php
+          
+
+          $lista=alumno::getGeneralNota();
+          
+          $pos=1;
+        foreach ($lista as $registro){
+
+          ?>
+          <tr>
+            <td data-label="Apellido"><?php echo"$pos";?></td>
+            <td data-label="Apellido"><?php echo"{$registro[1]}";?></td>
+            <td data-label="Apellido"><?php echo"{$registro[0] }";?></td>
+            <td data-label="Apellido"><?php echo"{$registro[2] }";?></td>
+          </tr>
+          <?php 
+          $pos++;
+        }
+          ?>
         </tbody>
         </table>
 
