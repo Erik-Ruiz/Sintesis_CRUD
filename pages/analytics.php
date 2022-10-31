@@ -96,24 +96,31 @@
                 <th scope="col">#</th>
                 <th scope="col">Materia</th>
                 <th scope="col">Nota Media</th>
+                <th scope="col">Mejor Nota</th>
                 <th scope="col">Mejor Alumno</th>
+                <th scope="col">Ver Alumno</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
         <?php
           
 
-          $lista=alumno::getGeneralNota();
+          $lista=Alumno::getGeneralNota();
           
           $pos=1;
         foreach ($lista as $registro){
 
           ?>
           <tr>
-            <td data-label="Apellido"><?php echo"$pos";?></td>
-            <td data-label="Apellido"><?php echo"{$registro[1]}";?></td>
-            <td data-label="Apellido"><?php echo"{$registro[0] }";?></td>
-            <td data-label="Apellido"><?php echo"{$registro[2] }";?></td>
+            <td data-label="Apellido"><?php echo "$pos";?></td>
+            <td data-label="Apellido"><?php echo "{$registro[1]}";?></td>
+            <td data-label="Apellido"><?php echo "{$registro[0] }";?></td>
+            <td data-label="Apellido"><?php echo "{$registro[2] }";?></td>
+            <?php $mejoAlumno = Alumno::getMejorAlumno($registro[1]) ?>
+            <td data-label="Apellido">
+              <?php echo $mejoAlumno['nombre']." ".$mejoAlumno['apellido']." ".$mejoAlumno['apellido2'] ?>
+            </td>
+            <td><input type="button" class="btn btn-success" value="Ver" onclick=verAlumno(<?php echo $mejoAlumno['id'];?>)></td>
           </tr>
           <?php 
           $pos++;
@@ -125,7 +132,7 @@
   </section>
 
   <script src="../js/sidebar.js"></script>
-
+  <script src="../js/veralumnos.js"></script>
 
 
     <!-- <nav class="navbar navbar-expand-lg bg-light">

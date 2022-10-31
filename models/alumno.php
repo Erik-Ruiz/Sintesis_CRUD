@@ -116,6 +116,27 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
         return $resultadoconsulta;
+    }
+    public static function getMejorAlumno($modulo){
+
+        //require_once "../controller/config.php";
+        $conexion=self::bd();
+        
+
+        $sql="SELECT avg(a.nota) as nota, b.nombre as nombre, b.apellido as apellido, b.apellido2 as apellido2,b.id as id FROM tbl_notas as a inner join tbl_alumno as b on a.id_alumno = b.id where a.modulo = ? GROUP BY a.id_alumno ORDER BY nota DESC limit 1";
+
+        $stmt = mysqli_stmt_init($conexion);
+        mysqli_stmt_prepare($stmt,$sql);
+            
+        mysqli_stmt_bind_param($stmt,"s",$modulo);
+        mysqli_stmt_execute($stmt);
+        $consulta = mysqli_stmt_get_result($stmt);
+    
+        $resultadoconsulta=mysqli_fetch_assoc($consulta);
+
+        mysqli_stmt_close($stmt);
+        
+        return $resultadoconsulta;
     }   
 
         
