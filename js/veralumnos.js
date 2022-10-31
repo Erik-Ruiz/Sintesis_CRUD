@@ -13,9 +13,7 @@ try{
 
 }
 
-const verAlumno =(id)=>{
-    location.href = "../pages/alumno.php?id="+id;
-}
+
 
 const correo =(element)=>{
     let id = element.id.split('_')[1];
@@ -41,4 +39,16 @@ const resetStorage =()=>{
 
 const editNota =(id,alumno)=>{
     location.href = "../pages/notasalumno.php?id="+id+"&idAlumno="+alumno;
+}
+
+const irEditar =(id)=>{
+    location.href = "../pages/alumno.php?id="+id;
+}
+
+const irElimnar =(id)=>{
+    location.href = "../controller/eliminarcontroller.php?id="+id;
+}
+
+const irVer =(id)=>{
+    location.href = "../pages/alumno.php?id="+id;
 }

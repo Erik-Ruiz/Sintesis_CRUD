@@ -183,12 +183,17 @@
             <div class="editar">
             
 
-            <input type="button" class="btn btn-success" value="Ver" onclick=verAlumno(<?php echo"{$registro['id']})";?>>
+            <button type="button" class="btn btn-success" onclick=irVer(<?php echo"{$registro['id']})";?>><i class="fa-regular fa-eye"></i></button>
 
-            <a href="admin.php?id=<?php echo $registro['id']; ?>"><input type="button" class="btn btn-warning" value="Actualizar"></a>
+            <button type="button" class="btn btn-warning" onclick=irEditar(<?php echo"{$registro['id']})";?>><i class="fa-solid fa-pen-to-square"></i></button>
+
+            <button type="button" class="btn btn-danger" onclick=irEliminar(<?php echo"{$registro['id']})";?>><i class="fa-solid fa-trash"></i></button>
 
 
-              <a href="../controller/eliminarcontroller.php?id=<?php echo $registro['id']; ?>"><input class="btn btn-danger" value="Eliminar" type="button"></a>
+            <!-- <a href="admin.php?id=<?php echo $registro['id']; ?>"><button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></a>
+
+            
+              <a href="../controller/eliminarcontroller.php?id=<?php echo $registro['id']; ?>"><button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></a> -->
             </div>
 
           </th>

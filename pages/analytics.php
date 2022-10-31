@@ -116,11 +116,13 @@
             <td data-label="Apellido"><?php echo "{$registro[1]}";?></td>
             <td data-label="Apellido"><?php echo "{$registro[0] }";?></td>
             <td data-label="Apellido"><?php echo "{$registro[2] }";?></td>
+
             <?php $mejoAlumno = Alumno::getMejorAlumno($registro[1]) ?>
             <td data-label="Apellido">
               <?php echo $mejoAlumno['nombre']." ".$mejoAlumno['apellido']." ".$mejoAlumno['apellido2'] ?>
             </td>
-            <td><input type="button" class="btn btn-success" value="Ver" onclick=verAlumno(<?php echo $mejoAlumno['id'];?>)></td>
+
+            <td><button class="btn btn-success"  onclick=verAlumno(<?php echo $mejoAlumno['id'];?>)><i class="fa-regular fa-eye"></i></button></td>
           </tr>
           <?php 
           $pos++;
