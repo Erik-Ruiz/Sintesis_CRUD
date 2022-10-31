@@ -6,4 +6,4 @@ $id = $_GET['id'];
 
 $respuesta= Alumno::eliminarAlumno($id);
 
-header('Location: ./admin.php?ok=.'$respuesta);
+header('Location: ../pages/admin.php?ok='.$respuesta);

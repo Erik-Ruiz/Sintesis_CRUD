@@ -1,8 +1,10 @@
 <?php
   session_start();
+
   if(empty($_SESSION['login'])){
-    echo "<script>location.href='../pages/login.php'</script>";
-    die();
+
+    //echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    
   }
   
   require_once '../components/cabecera.html';
@@ -15,14 +17,6 @@
   $page=$lista[2];
   
 ?>
-
-
-<head>
-
-  <link rel="stylesheet" href="../css/sidebar.css">
-
-</head>
-
     
 <body>
 <div class="sidebar close">
@@ -59,22 +53,22 @@
       
       <li>
       <li>
-        <a href="#">
+        <a href="./correo.php">
           <i class='bx bx-line-chart' ></i>
           <span class="link_name">Crear Correo</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Crear Correo</a></li>
+          <li><a class="link_name" href="./correo.php">Crear Correo</a></li>
         </ul>
       </li>
 
       <li>
-        <a href="#">
+        <a href="./analytics.php">
           <i class='bx bx-pie-chart-alt-2' ></i>
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Analytics</a></li>
+          <li><a class="link_name" href="./analytics.php">Analytics</a></li>
         </ul>
       </li>
 
@@ -106,7 +100,7 @@
     </div>
 
     <!-- <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
+    <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -147,6 +141,7 @@
       <thead>
        <form class="d-flex" role="search">
           <tr>
+            <th></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
@@ -158,14 +153,15 @@
         </form>
         </thead>
           <tr>
+            <th scope="col">IMG</th>
             <th scope="col">Matricula</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Apellido 2</th>
             <th scope="col">Correo</th>
             <th scope="col">DNI</th>
-            <th scope="col">Editar</th>
-            <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>
+            <th scope="col">Opciones</th>
+            <th scope="col"><input id="check_all" onchange="correo(this)" type="checkbox" class="form-check-input mt-0"></th>
           </tr>
         
         
@@ -176,20 +172,32 @@
       ?>
         <tr>
         <!-- Filas con todos los datos de los alumnos y labels que solo se mostrarán en mobiles -->
+          <td data-label="Img"><img src="../img/alum/<?php echo"{$registro['matricula']}";?>.png"/></td>
           <td data-label="Id"><?php echo"{$registro['matricula']}";?></td>
           <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>
-          <td data-label="Apellido"><?php echo"{$registro['apellido2']}";?></td>
-          <td data-label="Apellido"><?php echo"{$registro['correo']}";?></td>
-          <td data-label="Apellido"><?php echo"{$registro['dni']}";?></td>
+          <td data-label="Apellido2"><?php echo"{$registro['apellido2']}";?></td>
+          <td data-label="Correo"><?php echo"{$registro['correo']}";?></td>
+          <td data-label="DNI"><?php echo"{$registro['dni']}";?></td>
           <th scope="col">
             <div class="editar">
-              <input type="submit" class="btn btn-warning" value="Actualizar">
-              <input type="submit" class="btn btn-danger" value="Eliminar">
+            
+
+            <button type="button" class="btn btn-success" onclick=irVer(<?php echo"{$registro['id']})";?>><i class="fa-regular fa-eye"></i></button>
+
+            <button type="button" class="btn btn-warning" onclick=irEditar(<?php echo"{$registro['id']})";?>><i class="fa-solid fa-pen-to-square"></i></button>
+
+            <button type="button" class="btn btn-danger" onclick=irEliminar(<?php echo"{$registro['id']})";?>><i class="fa-solid fa-trash"></i></button>
+
+
+            <!-- <a href="admin.php?id=<?php echo $registro['id']; ?>"><button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></a>
+
+            
+              <a href="../controller/eliminarcontroller.php?id=<?php echo $registro['id']; ?>"><button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></a> -->
             </div>
 
           </th>
-          <th scope="col"><input type="checkbox" class="form-check-input mt-0"></th>        
+          <th scope="col"><input id="check_<?php echo $registro['id']; ?>" onchange="correo(this)" type="checkbox" class="form-check-input mt-0"></th>        
           
           </tr>
       <?php } ?>
@@ -220,6 +228,7 @@
               <a href="admin.php?page=<?php echo $total_pages ?>">&raquo;</a>
               </div>
   <script src="../js/sidebar.js"></script>
+  <script src="../js/veralumnos.js"></script>
 
 </body>
 
