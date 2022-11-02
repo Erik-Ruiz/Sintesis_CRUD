@@ -11,10 +11,12 @@
   
 ?>
 <div class="sidebar close">
+    <a href="../pages/admin.php">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">CodingLab</span>
+      <span class="logo_name">Notas</span>
     </div>
+    </a>
     <ul class="nav-links">
       <li>
         <a href="#">
@@ -44,22 +46,22 @@
       
       <li>
       <li>
-        <a href="#">
+        <a href="./correo.php">
           <i class='bx bx-line-chart' ></i>
           <span class="link_name">Crear Correo</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Crear Correo</a></li>
+          <li><a class="link_name" href="../pages/correo.php">Crear Correo</a></li>
         </ul>
       </li>
 
       <li>
-        <a href="#">
+        <a href="./analytics.php">
           <i class='bx bx-pie-chart-alt-2' ></i>
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Analytics</a></li>
+          <li><a class="link_name" href="../pages/analytics.php">Analytics</a></li>
         </ul>
       </li>
 
@@ -87,7 +89,7 @@
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <span class="text">Drop Down Sidebar</span>
+      <span class="text">ANALYTICS</span>
     </div>
 
     <table class="table">
