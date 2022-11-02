@@ -373,13 +373,12 @@ final class Alumno extends Persona{
             $conexion->begin_transaction();
             $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
             $id =mysqli_insert_id($conexion);
-            $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+            $conexion->query("INSERT INTO alberto (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
             $conexion->commit();
             return TRUE;
         }catch(Exception $e){
             $conexion->rollback();
             echo 'Fallo: ',  $e->getMessage(), "\n";
-            echo "<script>location.href=\"../pages/admin.php?peli=  $e->getMessage()\"</script>";
             return false;
 
         }
