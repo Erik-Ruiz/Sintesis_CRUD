@@ -30,12 +30,61 @@ final class Alumno extends Persona{
         require  "../controller/connection.php";
         return $conexion;
     }
+    // public static function getAlumnosFilter($sql){
+    //     //require_once "../controller/config.php";
+    //     $conexion=self::bd();
+
+    //     define('NUM_ITEMS_BY_PAGE', 9);
+
+    //     //Parte paginacion
+    //     $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
+    //     $row = $resultado->fetch_assoc();
+    //     // Asignamos el numero de resultados a estas variables
+    //     $num_total_rows = $row['total_alu'];
+    //     if ($num_total_rows > 0) {
+    //         $page = false;
+    
+    //     //Examinamos la pagina a mostrar y el inicio del registro a mostrar
+    //     if (isset($_GET["page"])) {
+    //         $page = $_GET["page"];
+    //     }
+    
+    //     if (!$page) {
+    //         $start = 0;
+    //         $page = 1;
+    //     } else {
+    //         $start = ($page - 1) * NUM_ITEMS_BY_PAGE;
+    //     }
+    //     //Calculo el total de paginas
+    //     $total_pages = ceil($num_total_rows / NUM_ITEMS_BY_PAGE);
+    //     }
+  
+    //     $paginas = NUM_ITEMS_BY_PAGE;
+
+
+    //     //Parte alumno
+    //     $sql="SELECT matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT where matricula like '%$filtroP%' $start, $paginas";
+
+
+    //     $stmt = mysqli_stmt_init($conexion);
+    //     mysqli_stmt_prepare($stmt, $sql);
+    //     mysqli_stmt_execute($stmt);
+                
+    //     $resultadoconsulta= mysqli_stmt_get_result($stmt);
+
+    //     mysqli_fetch_assoc($resultadoconsulta);
+
+    //     mysqli_stmt_close($stmt);
+    //     mysqli_fetch_assoc($resultadoconsulta);
+    //     $results = array($resultadoconsulta,$total_pages,$page);
+    //     return $results;
+    // }
     public static function getAlumnos(){
         
         //require_once "../controller/config.php";
         $conexion=self::bd();
 
-        define('NUM_ITEMS_BY_PAGE', 16);
+        define('NUM_ITEMS_BY_PAGE', 9);
 
         //Parte paginacion
         $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
