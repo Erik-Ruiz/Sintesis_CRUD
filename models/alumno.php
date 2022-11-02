@@ -319,43 +319,55 @@ final class Alumno extends Persona{
         $conexion=self::bd();
      
             
-        mysqli_autocommit($conexion,false);#Desactivar el auto commit
+        // mysqli_autocommit($conexion,false);#Desactivar el auto commit
 
-        try {
+        // try {
             
-            mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
+        //     mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
             
-            // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
-            // $stmt = mysqli_stmt_init($conexion);
-            // mysqli_stmt_prepare($stmt, $sql);
-            // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
-            // mysqli_stmt_execute($stmt);
+        //     // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
+        //     // $stmt = mysqli_stmt_init($conexion);
+        //     // mysqli_stmt_prepare($stmt, $sql);
+        //     // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
+        //     // mysqli_stmt_execute($stmt);
             
-            $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
+        //     $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
             
             
-            mysqli_query($conexion,$sql1);
+        //     mysqli_query($conexion,$sql1);
 
-            $id=mysqli_insert_id($conexion);#Ultimo ID insertado
-            echo $id;
+        //     $id=mysqli_insert_id($conexion);#Ultimo ID insertado
+        //     echo $id;
 
-            $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
-            mysqli_query($conexion,$sql2);
+        //     $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
+        //     mysqli_query($conexion,$sql2);
         
-            mysqli_commit($conexion);
+        //     mysqli_commit($conexion);
         
             
-            mysqli_autocommit($conexion,true);
-            return true;
+        //     mysqli_autocommit($conexion,true);
+        //     return true;
 
-        } catch(Exception $e) {
-            mysqli_rollback($conexion);
-            mysqli_autocommit($conexion,true);
-            return false;
+        // } catch(Exception $e) {
+        //     mysqli_rollback($conexion);
+        //     mysqli_autocommit($conexion,true);
+        //     return false;
+        // }
+       
+
+        try{
+            $conexion->begin_transaction();
+            $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
+            $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+            $conexion->commit();
+        }catch(Exception $e) {
+            $conexion->rollback();
+            echo 'Something fails: ',  $e->getMessage(), "\n";
+        }
         }
 
         
-    }
+    
 
 
     public static function eliminarAlumno($id){
