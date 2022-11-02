@@ -15,8 +15,10 @@
             <button type="submit" name="enviar" >Enviar</button>
         </form>
     </div>
+    <script src="../js/veralumnos.js"></script>
     <script>
-        document.getElementById("correos").value = localStorage.getItem('correos')
+        document.getElementById("correos").value = localStorage.getItem('correos');
+        resetStorage();
     </script>
 </body>
 </html>

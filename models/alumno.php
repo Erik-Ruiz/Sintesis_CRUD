@@ -10,14 +10,10 @@ final class Alumno extends Persona{
     private $matricula;
 
 
-    public function __construct($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
+    public function __construct(){
 
-        parent::__construct($nombre, $apellido, $apellido2, $dni, $telefono, $correo);
-        
+        parent::__construct();
 
-        $this->clase = $clase;
-        $this->promocion = $promocion;
-        $this->matricula = $matricula;
 
     }
     private function bd(){
@@ -29,7 +25,7 @@ final class Alumno extends Persona{
         //require_once "../controller/config.php";
         $conexion=self::bd();//conexion con la bd
 
-        define('NUM_ITEMS_BY_PAGE', 16);
+        define('NUM_ITEMS_BY_PAGE', 10);
 
         //Parte paginacion
         $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
@@ -270,32 +266,47 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
     }
-    // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
-    //                                    $correo, $clase, $promocion, $matricula){
-
-    //     require_once "../controller/config.php";
-    //     require_once "../controller/connection.php";
-        
-    //     $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
-    //      correo, clase, promocion, matricula";
-
-
-    //     $stmt = mysqli_stmt_init($conexion);
-
-    //     mysqli_stmt_prepare($conexion, $sql);
-
-    //         mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
-    //         $correo, $clase, $promocion, $matricula);
-
-    //         mysqli_stmt_execute($stmt);
+    public static function crearAlumno($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
+        $conexion=self::bd();
+     
             
-    //         $resultadoconsulta=mysqli_stmt_get_result($stmt);
+        mysqli_autocommit($conexion,false);#Desactivar el auto commit
 
-    //         mysqli_fetch_assoc($resultadoconsulta);
+        try {
+            
+            mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
+            
+            // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
+            // $stmt = mysqli_stmt_init($conexion);
+            // mysqli_stmt_prepare($stmt, $sql);
+            // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
+            // mysqli_stmt_execute($stmt);
+            
+            $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
+            
+            
+            mysqli_query($conexion,$sql1);
 
-    //         mysqli_stmt_close($stmt);
+            $id=mysqli_insert_id($conexion);#Ultimo ID insertado
+            echo $id;
 
-    //     }
+            $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
+            mysqli_query($conexion,$sql2);
+        
+            mysqli_commit($conexion);
+        
+            
+            mysqli_autocommit($conexion,true);
+            return true;
+
+        } catch(Exception $e) {
+            mysqli_rollback($conexion);
+            mysqli_autocommit($conexion,true);
+            return false;
+        }
+
+        
+    }
 
 
     public static function eliminarAlumno($id){
@@ -351,33 +362,36 @@ final class Alumno extends Persona{
         
     }
 
-    // public static function updateAlumno($nombre,$apellido, $apellido2, $dni, $telefono,
-    //                                     $correo, $clase, $promocion, $matricula){
-
-    //     require_once "../controller/config.php";
-    //     require_once "../controller/connection.php";
-
-
-    //     $sql="UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=?, matricula=? WHERE id=?";
+    public static function updateAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
+                                        $correo, $clase, $promocion ){
+        try{
+            $conexion=self::bd();
 
 
-    //    $stmt = mysqli_stmt_init($conexion);
-
-    //    mysqli_stmt_prepare($conexion, $sql);
-
-    //        mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
-    //        $correo, $clase, $promocion, $matricula);
-
-    //        mysqli_stmt_execute($stmt);
-           
-    //        $resultadoconsulta=mysqli_stmt_get_result($stmt);
-
-    //        mysqli_fetch_assoc($resultadoconsulta);
-
-    //        mysqli_stmt_close($stmt);
+            $sql="UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=? WHERE id=?";
 
 
-    // }SELECT avg(nota) as media,modulo, max(nota) as "Mejor Nota" FROM tbl_notas group by modulo order by media desc;
+            $stmt = mysqli_stmt_init($conexion);
+
+            mysqli_stmt_prepare($stmt, $sql);
+
+            mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $apellido, $apellido2, $dni, $telefono, 
+            $correo, $clase, $promocion, $id);
+
+            mysqli_stmt_execute($stmt);
+
+
+            mysqli_stmt_close($stmt);
+            $ok = true;
+
+        }catch(Exception $e){
+            
+            $ok = $e;
+        }finally{
+            return $ok;
+        }
+    }
+
 
     /**
      * Get the value of clase
