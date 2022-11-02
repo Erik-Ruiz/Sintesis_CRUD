@@ -276,33 +276,53 @@ final class Alumno extends Persona{
             
             mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
             
-            // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
+            // $sql="INSERT INTO tbl_alumno values (null,?,?,?,?,?,?,?,?,?)";
             // $stmt = mysqli_stmt_init($conexion);
             // mysqli_stmt_prepare($stmt, $sql);
-            // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
+            // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula);
+
             // mysqli_stmt_execute($stmt);
             
-            $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
-            
-            
-            mysqli_query($conexion,$sql1);
+            // $id=mysqli_insert_id($conexion);#Ultimo ID insertado
+            // echo $id;
 
-            $id=mysqli_insert_id($conexion);#Ultimo ID insertado
+            // $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
+
+            // $stmt = mysqli_stmt_init($conexion);
+            // mysqli_stmt_prepare($stmt, $sql2);
+
+
+
+            mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
+            
+            $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono', '$correo','$clase','$promocion','$matricula');";
+            echo $sql1;
+            if($conexion->query($sql1)){
+                echo "ok";
+            }else{
+                echo mysqli_error($conexion);
+            }
+        
+            $id=mysqli_insert_id($conexion);    //mysqli_insert_id($conexion);#Ultimo ID insertado
             echo $id;
-
             $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
-            mysqli_query($conexion,$sql2);
-        
-            mysqli_commit($conexion);
+
+            $conexion->query($sql2);
+
+
+            $conexion->commit();
+
+            $conexion->close();
         
             
-            mysqli_autocommit($conexion,true);
-            return true;
+            //mysqli_autocommit($conexion,true);
+            return 1;
 
         } catch(Exception $e) {
+            echo "Error: " . $e->getMessage;
             mysqli_rollback($conexion);
             mysqli_autocommit($conexion,true);
-            return false;
+            return 0;
         }
 
         
@@ -344,16 +364,17 @@ final class Alumno extends Persona{
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            $ok=true;
+            
             try{
-              unlink('../img/alum/'.$matricula[0]['matricula'].'.png');  
+              unlink('../img/alum/'.$matricula['matricula'].'.png');
+              $ok='ok';  
             }catch(Exception $e){
                 
             }
             
 
         }catch(Exception $e){
-            $ok=false;
+            $ok='nok';
         }finally{
             return $ok;
         }

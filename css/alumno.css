@@ -3,7 +3,7 @@
     width: 100%;
     gap: 20px;;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: left;
     justify-items: left;
 

@@ -124,7 +124,7 @@
               <?php echo $mejoAlumno['nombre']." ".$mejoAlumno['apellido']." ".$mejoAlumno['apellido2'] ?>
             </td>
 
-            <td><button class="btn btn-success"  onclick=verAlumno(<?php echo $mejoAlumno['id'];?>)><i class="fa-regular fa-eye"></i></button></td>
+            <td><button class="btn btn-success"  onclick=irVer(<?php echo $mejoAlumno['id'];?>)><i class="fa-regular fa-eye"></i></button></td>
           </tr>
           <?php 
           $pos++;

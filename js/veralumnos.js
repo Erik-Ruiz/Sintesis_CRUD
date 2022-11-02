@@ -45,7 +45,7 @@ const irEditar =(id)=>{
     location.href = "../pages/formulario.php?id="+id;
 }
 
-const irElimnar =(id)=>{
+const irEliminar =(id)=>{
     location.href = "../controller/eliminarcontroller.php?id="+id;
 }
 
