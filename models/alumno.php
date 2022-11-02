@@ -315,7 +315,7 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
     }
-    public static function crearAlumno($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
+    public static function crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$telefono, $matricula, $promocion, $clase){
         $conexion=self::bd();
      
             
@@ -355,19 +355,62 @@ final class Alumno extends Persona{
         // }
        
 
+        // try{
+        //     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     $conexion->beginTransaction();
+        //     $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
+        //     $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+        //     $conexion->commit();
+        // }catch(Exception $e) {
+        //     $conexion->rollback();
+        //     echo 'Fallo: ',  $e->getMessage(), "\n";
+        // }
+        // }
+        
+        
         try{
+            
             $conexion->begin_transaction();
             $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
+            $id =mysqli_insert_id($conexion);
             $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
             $conexion->commit();
-        }catch(Exception $e) {
+            return TRUE;
+        }catch(Exception $e){
             $conexion->rollback();
-            echo 'Something fails: ',  $e->getMessage(), "\n";
-        }
-        }
+            echo 'Fallo: ',  $e->getMessage(), "\n";
+            echo "<script>location.href=\"../pages/admin.php?peli=  $e->getMessage()\"</script>";
+            return false;
 
-        
-    
+        }
+        // try{
+        //     mysqli_begin_transaction($conexion);
+        //     $stmt1 = mysqli_stmt_init($conexion);
+        //     $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');"
+        //     mysqli_stmt_prepare($stmt1, $sql1);
+        //     mysqli_stmt_bind_param($stmt1, "sssssssss", $nombre, $apellido, $apellido2, $correo, $dni,$telefono, $matricula, $promocion, $clase);
+        //     mysqli_stmt_execute($stmt1);
+        //     $id =mysqli_insert_id($conexion);
+
+        //     $stmt2 = mysqli_stmt_init($conexion);
+        //     $sql2="INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values (?,'M12','UF1','0'),(?,'M6','UF1','0'),(?,'M7','UF1','0'),(?,'M9','UF1','0'),(?,'M8','UF2','0'),(?,'M8','UF4','0'),(?,'M3','UF4','0'),(?,'M3','UF5','0'),(?,'M3','UF6','0'),(?,'M2','UF2','0')";
+        //     mysqli_stmt_prepare($stmt2, $sql2);
+        //     mysqli_stmt_bind_param($stmt2, "iiiiiiiiii",$id,$id,$id,$id,$id,$id,$id,$id,$id,$id);
+        //     mysqli_stmt_execute($stmt2);
+
+        //     mysqli_stmt_close($stmt1);
+        //     mysqli_stmt_close($stmt2);
+        //     mysqli_commit($conexion);
+        //     return true;
+        // } catch (Exception $e) {
+        //     mysqli_rollback($conexion);
+        //     echo $e->getMessage(), "\n";
+        //     echo "Error al insertar el  registro";
+        //     return false;
+        // }
+
+
+    }
 
 
     public static function eliminarAlumno($id){
@@ -405,16 +448,17 @@ final class Alumno extends Persona{
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            $ok=true;
+            
             try{
-              unlink('../img/alum/'.$matricula[0]['matricula'].'.png');  
+              unlink('../img/alum/'.$matricula['matricula'].'.png');
+              $ok='ok';  
             }catch(Exception $e){
                 
             }
             
 
         }catch(Exception $e){
-            $ok=false;
+            $ok='nok';
         }finally{
             return $ok;
         }
