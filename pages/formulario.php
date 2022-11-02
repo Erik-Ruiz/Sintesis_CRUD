@@ -25,7 +25,7 @@
 if(!isset($_GET['id'])){
   $action = "../controller/crearcontroller.php";
 }else{
-  $action = "../controller/ediatrcontroller.php";
+  $action = "../controller/editarcontroller.php";
 }
 ?>
 <div class="container">
@@ -58,8 +58,8 @@ if(!isset($_GET['id'])){
     <p type="DNI:"><input type="text" name="dni" value="<?php echo $infoAlumno['dni'] ?>"></input></p>
 
     <p type="Telf.:"><input type="text" name="telefono" value="<?php echo $infoAlumno['telefono'] ?>"></input></p>
-
-    <input type="hidden" name="id" value="<?php echo $_POST['id'] ?>"></input>
+    <input type="hidden" name="matricula" value="<?php echo $_GET['matricula'] ?>"></input>
+    <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>"></input>
 
     <?php
     }

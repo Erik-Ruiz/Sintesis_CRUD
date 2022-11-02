@@ -3,7 +3,7 @@
 
   if(empty($_SESSION['login'])){
 
-    //echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    echo "<script>location.href='../pages/login.php?nok=1'</script>";
     
   }
   
@@ -28,12 +28,12 @@
     </a>
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="../pages/formulario.php">
           <i class='bx bx-grid-alt' ></i>
           <span class="link_name">Crear Alumno</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Crear Alumno</a></li>
+          <li><a class="link_name" href="../pages/formulario.php">Crear Alumno</a></li>
         </ul>
       </li>
 

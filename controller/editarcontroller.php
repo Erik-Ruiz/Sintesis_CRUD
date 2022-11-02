@@ -1,15 +1,8 @@
 <?php
-
 require_once '../models/alumno.php';
 require_once '../includes/sizeimg.inc.php';
-function genMatricula(){
-    $mat='';
-    for ($i=0; $i < 12; $i++) { 
-        $mat= $mat.rand(0,9);
-    }
-    return $mat;
-}
 
+$id=$_POST['id'];
 $nombre=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $apellido2=$_POST['apellido2'];
@@ -17,18 +10,15 @@ $correo=$_POST['correo'];
 $tel=$_POST['telefono'];
 $dni=$_POST['dni'];
 
-$matricula=genMatricula();
+$matricula=$_POST['matricula'];
+
 $promocion='2022-2023';
 $clase='DAW2';
 
 
-
-// $alumno = new Alumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion,$matricula);
-
-if(Alumno::crearAlumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion,$matricula)){
-    
+if(Alumno::updateAlumno($id,$nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion)){
     $target_dir = "../img/alum/";
-
+    unlink("../img/alum/$matricula.png");
 
     $image_file = $_FILES["fileToUpload"];
     
@@ -47,8 +37,4 @@ if(Alumno::crearAlumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$pr
     );
     
     GenerateThumbnail($target_dir.$matricula.'.png',$target_dir.$matricula.'.png',64,64);
-
-    echo 'OK';
-    
 }
-
