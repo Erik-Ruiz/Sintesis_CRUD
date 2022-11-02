@@ -174,7 +174,7 @@
       ?>
         <tr>
         <!-- Filas con todos los datos de los alumnos y labels que solo se mostrarán en mobiles -->
-          <td data-label="Img"><img src="../img/alum/<?php echo"{$registro['matricula']}";?>.png"/></td>
+          <td data-label="Img"><img src="../img/alum/<?php echo"{$registro['matricula']}";?>.png?ran=<?php echo rand(0,100); ?>" /></td>
           <td data-label="Id"><?php echo"{$registro['matricula']}";?></td>
           <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>

@@ -34,7 +34,7 @@ if(Alumno::crearAlumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$pr
     
     // Image not defined, let's exit
     if (!isset($image_file)) {
-        die('No file uploaded.');
+        echo "<script>location.href='../pages/admin.php'</script>";
     }
     
     // Move the temp image file to the images/ directory

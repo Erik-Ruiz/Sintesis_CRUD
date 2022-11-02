@@ -15,17 +15,25 @@ $matricula=$_POST['matricula'];
 $promocion='2022-2023';
 $clase='DAW2';
 
+$ok = Alumno::updateAlumno($id,$nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion);
 
-if(Alumno::updateAlumno($id,$nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion)){
-    $target_dir = "../img/alum/";
-    unlink("../img/alum/$matricula.png");
-
+if($ok == 1){
+    try{
     $image_file = $_FILES["fileToUpload"];
     
     // Image not defined, let's exit
-    if (!isset($image_file)) {
-        die('No file uploaded.');
+    if (count($image_file)==0) {
+        echo "IMG NOT SET";
+        //echo "<script>location.href='../pages/admin.php'</script>";
+        die();
     }
+
+    $target_dir = "../img/alum/";
+    unlink($target_dir.$matricula.".png");
+
+    
+    
+    
     
     // Move the temp image file to the images/ directory
     move_uploaded_file(
@@ -38,4 +46,11 @@ if(Alumno::updateAlumno($id,$nombre,$apellido,$apellido2,$dni,$tel,$correo,$clas
     
     GenerateThumbnail($target_dir.$matricula.'.png',$target_dir.$matricula.'.png',64,64);
     echo "<script>location.href='../pages/admin.php'</script>";
+    echo "OK";
+    }catch(Exception $e){
+        echo $e;
+    }
+}else{
+  echo "Error";  
 }
+

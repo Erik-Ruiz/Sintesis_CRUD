@@ -25,7 +25,7 @@ final class Alumno extends Persona{
         //require_once "../controller/config.php";
         $conexion=self::bd();//conexion con la bd
 
-        define('NUM_ITEMS_BY_PAGE', 16);
+        define('NUM_ITEMS_BY_PAGE', 10);
 
         //Parte paginacion
         $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
@@ -364,26 +364,32 @@ final class Alumno extends Persona{
 
     public static function updateAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
                                         $correo, $clase, $promocion ){
-
-        $conexion=self::bd();
-
-
-        $sql="UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=? WHERE id=?";
+        try{
+            $conexion=self::bd();
 
 
-       $stmt = mysqli_stmt_init($conexion);
-
-       mysqli_stmt_prepare($stmt, $sql);
-
-        mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $apellido, $apellido2, $dni, $telefono, 
-        $correo, $clase, $promocion, $id);
-
-        mysqli_stmt_execute($stmt);
+            $sql="UPDATE tbl_alumno SET nombre=?,apellido=?, apellido2=?,dni=?, telefono=?,correo=?, clase=?,promocion=? WHERE id=?";
 
 
-        mysqli_stmt_close($stmt);
+            $stmt = mysqli_stmt_init($conexion);
+
+            mysqli_stmt_prepare($stmt, $sql);
+
+            mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $apellido, $apellido2, $dni, $telefono, 
+            $correo, $clase, $promocion, $id);
+
+            mysqli_stmt_execute($stmt);
 
 
+            mysqli_stmt_close($stmt);
+            $ok = true;
+
+        }catch(Exception $e){
+            
+            $ok = $e;
+        }finally{
+            return $ok;
+        }
     }
 
 
