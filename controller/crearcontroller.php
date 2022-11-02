@@ -23,9 +23,15 @@ $clase='DAW2';
 
 
 
+<<<<<<< HEAD
+$ok=Alumno::crearAlumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion,$matricula);
+echo $ok;
+if($ok == 1){
+=======
 // $alumno = new Alumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion,$matricula);
 
 if(Alumno::crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$tel, $matricula, $promocion, $clase)){
+>>>>>>> dee8ee6d4487a492a73c62d2d2f99b58eba024f1
     
     $target_dir = "../img/alum/";
 
@@ -33,7 +39,7 @@ if(Alumno::crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$tel, $matr
     $image_file = $_FILES["fileToUpload"];
     
     // Image not defined, let's exit
-    if (!isset($image_file)) {
+    if (count($image_file)==0) {
         echo "<script>location.href='../pages/admin.php'</script>";
     }
     
@@ -48,7 +54,7 @@ if(Alumno::crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$tel, $matr
     
     GenerateThumbnail($target_dir.$matricula.'.png',$target_dir.$matricula.'.png',64,64);
 
-    echo "<script>location.href='../pages/admin.php'</script>";
+    //echo "<script>location.href='../pages/admin.php'</script>";
     
 }else{
     echo "Error:";

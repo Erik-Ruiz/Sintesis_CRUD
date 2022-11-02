@@ -3,8 +3,12 @@
     width: 100%;
     gap: 20px;;
     display: flex;
+<<<<<<< HEAD
+    flex-direction: column;
+=======
     /* height: 50vh; */
     flex-direction: row;
+>>>>>>> dee8ee6d4487a492a73c62d2d2f99b58eba024f1
     justify-content: left;
     justify-items: left;
 

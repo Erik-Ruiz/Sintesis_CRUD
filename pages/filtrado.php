@@ -13,7 +13,7 @@ if(!mysqli_stmt_prepare($stmt,$sql)){
     exit();
 }
 
-mysqli_stmt_bind_param($stmt,"ssssss",$matricula,$nombre,$apellido,$apellido2,$correo,$dni;
+mysqli_stmt_bind_param($stmt,"ssssss",$matricula,$nombre,$apellido,$apellido2,$correo,$dni);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 

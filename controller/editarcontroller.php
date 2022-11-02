@@ -24,7 +24,7 @@ if($ok == 1){
     // Image not defined, let's exit
     if (count($image_file)==0) {
         echo "IMG NOT SET";
-        //echo "<script>location.href='../pages/admin.php'</script>";
+        echo "<script>location.href='../pages/admin.php'</script>";
         die();
     }
 
@@ -51,6 +51,7 @@ if($ok == 1){
         echo $e;
     }
 }else{
-  echo "Error";  
+  echo "Error";
+  echo "<script>location.href='../pages/admin.php'</script>"; 
 }
 

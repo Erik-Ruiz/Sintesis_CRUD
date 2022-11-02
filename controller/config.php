@@ -2,8 +2,8 @@
 
 define('SERVIDOR', "localhost");
 
-define('USUARIO', 'root');
+define('USUARIO', 'admin1');
 
-define('PASSWORD', '');
+define('PASSWORD', 'Admin1234');
 
 define('BD', 'bd_sintesis');

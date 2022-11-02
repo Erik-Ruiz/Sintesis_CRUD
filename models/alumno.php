@@ -447,16 +447,17 @@ final class Alumno extends Persona{
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            $ok=true;
+            
             try{
-              unlink('../img/alum/'.$matricula[0]['matricula'].'.png');  
+              unlink('../img/alum/'.$matricula['matricula'].'.png');
+              $ok='ok';  
             }catch(Exception $e){
                 
             }
             
 
         }catch(Exception $e){
-            $ok=false;
+            $ok='nok';
         }finally{
             return $ok;
         }
