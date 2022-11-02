@@ -37,4 +37,5 @@ if(Alumno::updateAlumno($id,$nombre,$apellido,$apellido2,$dni,$tel,$correo,$clas
     );
     
     GenerateThumbnail($target_dir.$matricula.'.png',$target_dir.$matricula.'.png',64,64);
+    echo "<script>location.href='../pages/admin.php'</script>";
 }
