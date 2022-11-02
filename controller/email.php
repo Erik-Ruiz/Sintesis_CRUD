@@ -11,9 +11,13 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 require '../config/correo.conf.php';
-
+require '../models/alumno.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
+
+if(empty($_POST['correos'])){
+    
+}
 
 try {
     //Server settings
@@ -27,18 +31,34 @@ try {
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('sergio.comsace@gmail.com', 'no-reply');
-    $mail->addAddress('100006393.joan23@fje.edu');     //Add a recipient
+    $mail->setFrom(EMAIL, 'no-reply');
+    $lista=explode(",", $_POST['correos']);
+    var_dump($lista);
     
+    if (in_array("all", $lista)) {
+        $lista=Alumno::getAllCorreoAlumno();
+        foreach ($lista as $registro){
+            //$mail->addAddress(Alumno::getCorreoAlumno($registro['correo']));
+            echo "<br>".$registro[0]."<br>";
+        }
+    }else{
+        foreach ($lista as $registro) { 
+            if($registro != 'null'){
+                $mail->addAddress(Alumno::getCorreoAlumno($registro)[0][0]);
 
+            }
+        }
+    }
+    
     //Content
     $mail->isHTML(false);                                  //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
+    $mail->Subject = $_POST['titulo'];
+    $mail->Body    = $_POST['info'];
+    $mail->AltBody = $_POST['info'];
+    
     $mail->send();
     echo 'Message has been sent';
+    echo "<script>location.href='../pages/admin.php'</script>";
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

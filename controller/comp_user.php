@@ -20,9 +20,11 @@ try{
     //Si existen creamos la session, si no enviamos a login.php 
     if ($num==1){
         session_start();
+        
         $_SESSION['login'] = $resul[0]['nombre'];
         $_SESSION['rol'] = $resul[0]['rol'];
         $_SESSION['img'] = $resul[0]['img'];
+        
         echo "<script>location.href='../pages/admin.php'</script>";
     }else{
         echo "<script>location.href='../pages/login.php?log=1'</script>";
