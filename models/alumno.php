@@ -147,7 +147,7 @@ final class Alumno extends Persona{
         $conexion=self::bd();
         
 
-        $sql="SELECT avg(nota) as media FROM tbl_notas where id_alumno = ?";
+        $sql="SELECT round(avg(nota),2) as media FROM tbl_notas where id_alumno = ?";
 
         $stmt = mysqli_stmt_init($conexion);
         mysqli_stmt_prepare($stmt,$sql);
