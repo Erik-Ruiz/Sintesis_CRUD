@@ -25,7 +25,7 @@ $clase='DAW2';
 
 // $alumno = new Alumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion,$matricula);
 
-if(Alumno::crearAlumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$promocion,$matricula)){
+if(Alumno::crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$tel, $matricula, $promocion, $clase)){
     
     $target_dir = "../img/alum/";
 
@@ -50,5 +50,7 @@ if(Alumno::crearAlumno($nombre,$apellido,$apellido2,$dni,$tel,$correo,$clase,$pr
 
     echo "<script>location.href='../pages/admin.php'</script>";
     
+}else{
+    echo "Error:";
 }
 
