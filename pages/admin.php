@@ -3,7 +3,7 @@
 
   if(empty($_SESSION['login'])){
 
-    //echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    echo "<script>location.href='../pages/login.php?nok=1'</script>";
     
   }
   
@@ -20,18 +20,20 @@
     
 <body>
 <div class="sidebar close">
+    <a href="../pages/admin.php">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">CodingLab</span>
+      <span class="logo_name">Notas</span>
     </div>
+    </a>
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="../pages/formulario.php">
           <i class='bx bx-grid-alt' ></i>
           <span class="link_name">Crear Alumno</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Crear Correo</a></li>
+          <li><a class="link_name" href="../pages/formulario.php">Crear Alumno</a></li>
         </ul>
       </li>
 
@@ -58,7 +60,7 @@
           <span class="link_name">Crear Correo</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="./correo.php">Crear Correo</a></li>
+          <li><a class="link_name" href="../pages/correo.php">Crear Correo</a></li>
         </ul>
       </li>
 
@@ -68,7 +70,7 @@
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="./analytics.php">Analytics</a></li>
+          <li><a class="link_name" href="../pages/analytics.php">Analytics</a></li>
         </ul>
       </li>
 
@@ -96,7 +98,7 @@
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <span class="text">Drop Down Sidebar</span>
+      <span class="text">HOME</span>
     </div>
 
     <!-- <nav class="navbar navbar-expand-lg bg-light">
@@ -172,7 +174,7 @@
       ?>
         <tr>
         <!-- Filas con todos los datos de los alumnos y labels que solo se mostrarán en mobiles -->
-          <td data-label="Img"><img src="../img/alum/<?php echo"{$registro['matricula']}";?>.png"/></td>
+          <td data-label="Img"><img src="../img/alum/<?php echo"{$registro['matricula']}";?>.png?ran=<?php echo rand(0,100); ?>" /></td>
           <td data-label="Id"><?php echo"{$registro['matricula']}";?></td>
           <td data-label="Nombre"><?php echo"{$registro['nombre']}";?></td>
           <td data-label="Apellido"><?php echo"{$registro['apellido']}";?></td>
@@ -189,11 +191,6 @@
 
             <button type="button" class="btn btn-danger" onclick=irEliminar(<?php echo"{$registro['id']})";?>><i class="fa-solid fa-trash"></i></button>
 
-
-            <!-- <a href="admin.php?id=<?php echo $registro['id']; ?>"><button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></a>
-
-            
-              <a href="../controller/eliminarcontroller.php?id=<?php echo $registro['id']; ?>"><button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></a> -->
             </div>
 
           </th>

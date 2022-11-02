@@ -1,6 +1,6 @@
 <?php
 require_once '../models/alumno.php';
-echo $_GET['id'];
+
 
 ?>
 
