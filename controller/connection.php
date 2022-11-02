@@ -1,6 +1,6 @@
 <?php
 
-$server = 'localhost';
+$server = '192.168.3.109';
 $username = 'admin1';
 $password = 'admin1234';
 $bd = 'bd_sintesis';
@@ -11,5 +11,3 @@ if (mysqli_connect_error()) {
     echo "<script>location.href='../pages/login.php?log=2'</script>";
     exit();
 }
-
-// Definimos como una constante "NUM_ITEMS_BY_PAGE", esto solo mostrara 10 registros
