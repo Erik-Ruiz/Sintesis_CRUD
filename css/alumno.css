@@ -3,7 +3,12 @@
     width: 100%;
     gap: 20px;;
     display: flex;
+<<<<<<< HEAD
     flex-direction: column;
+=======
+    /* height: 50vh; */
+    flex-direction: row;
+>>>>>>> dee8ee6d4487a492a73c62d2d2f99b58eba024f1
     justify-content: left;
     justify-items: left;
 
@@ -28,6 +33,7 @@
 .info-materias{
     margin: auto;
     width: 80%;
+    height: 80vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -37,10 +43,11 @@
 }
 
 .materia{
-    /* margin: 5px; */
-    border:  1px solid rgb(54, 54, 54);
-    border-radius: 10px;
-    width: 24.5%;
+    
+     margin: 5px; 
+     border:  1px solid rgb(54, 54, 54); 
+     border-radius: 10px;
+     width: 22.5%;
 
 }
 .materia-uf{
@@ -50,6 +57,34 @@
 .materia-tabla{
     text-align: center;
     margin: auto;
-    width: 95%;
-    border:  1px solid rgb(54, 54, 54);
+    width: 100%;
+    /* border:  1px solid rgb(54, 54, 54); */
 }
+
+
+    @media (max-width: 900px){
+    
+        .materia{            
+            width: 25%;
+        }
+
+    }
+
+    @media (max-width: 700px){
+    
+        .materia{            
+            width: 100%;    
+        }
+        /* .info-alumno{
+            width: 100%;
+        } */
+
+        /* .container-alumno{
+
+            flex-direction: column;    
+            
+
+        } */
+
+    
+    }
