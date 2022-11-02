@@ -191,11 +191,6 @@
 
             <button type="button" class="btn btn-danger" onclick=irEliminar(<?php echo"{$registro['id']})";?>><i class="fa-solid fa-trash"></i></button>
 
-
-            <!-- <a href="admin.php?id=<?php echo $registro['id']; ?>"><button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></a>
-
-            
-              <a href="../controller/eliminarcontroller.php?id=<?php echo $registro['id']; ?>"><button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></a> -->
             </div>
 
           </th>

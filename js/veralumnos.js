@@ -42,7 +42,7 @@ const editNota =(id,alumno)=>{
 }
 
 const irEditar =(id)=>{
-    location.href = "../pages/alumno.php?id="+id;
+    location.href = "../pages/formulario.php?id="+id;
 }
 
 const irElimnar =(id)=>{

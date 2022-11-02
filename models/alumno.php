@@ -10,14 +10,10 @@ final class Alumno extends Persona{
     private $matricula;
 
 
-    public function __construct($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
+    public function __construct(){
 
-        parent::__construct($nombre, $apellido, $apellido2, $dni, $telefono, $correo);
-        
+        parent::__construct();
 
-        $this->clase = $clase;
-        $this->promocion = $promocion;
-        $this->matricula = $matricula;
 
     }
     private function bd(){
@@ -270,32 +266,29 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
     }
-    // public static function crearAlumno($id,$nombre,$apellido, $apellido2, $dni, $telefono,
-    //                                    $correo, $clase, $promocion, $matricula){
-
-    //     require_once "../controller/config.php";
-    //     require_once "../controller/connection.php";
+    public static function crearAlumno($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
+    
+        try{
+            $conexion=self::bd();
         
-    //     $sql="INSERT INTO tbl_alumno(id, nombre,apellido, apellido2, dni, telefono,
-    //      correo, clase, promocion, matricula";
-
-
-    //     $stmt = mysqli_stmt_init($conexion);
-
-    //     mysqli_stmt_prepare($conexion, $sql);
-
-    //         mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono, 
-    //         $correo, $clase, $promocion, $matricula);
-
-    //         mysqli_stmt_execute($stmt);
+            $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
+    
+    
+            $stmt = mysqli_stmt_init($conexion);
+    
+            mysqli_stmt_prepare($stmt, $sql);
+    
+            mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
+    
+            mysqli_stmt_execute($stmt);
             
-    //         $resultadoconsulta=mysqli_stmt_get_result($stmt);
-
-    //         mysqli_fetch_assoc($resultadoconsulta);
-
-    //         mysqli_stmt_close($stmt);
-
-    //     }
+            mysqli_stmt_close($stmt);
+    
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+    }
 
 
     public static function eliminarAlumno($id){
