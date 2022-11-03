@@ -3,12 +3,8 @@
     width: 100%;
     gap: 20px;;
     display: flex;
-<<<<<<< HEAD
-    flex-direction: column;
-=======
     /* height: 50vh; */
     flex-direction: row;
->>>>>>> dee8ee6d4487a492a73c62d2d2f99b58eba024f1
     justify-content: left;
     justify-items: left;
 
@@ -60,31 +56,54 @@
     width: 100%;
     /* border:  1px solid rgb(54, 54, 54); */
 }
+.info-alumno img{
+    aspect-ratio: 1/1;
+}
 
+.datos-alum{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+}
 
-    @media (max-width: 900px){
-    
-        .materia{            
-            width: 25%;
-        }
+@media (max-width: 900px){
 
+    .materia{            
+        width: 25%;
     }
 
-    @media (max-width: 700px){
-    
-        .materia{            
-            width: 100%;    
-        }
-        /* .info-alumno{
-            width: 100%;
-        } */
+}
 
-        /* .container-alumno{
+@media (max-width: 700px){
 
-            flex-direction: column;    
-            
-
-        } */
-
-    
+    .materia{            
+        width: 100%;    
     }
+    /* .info-alumno{
+        width: 100%;
+    } */
+
+    .container-alumno{
+        flex-direction: column;
+    }
+    .info-alumno{
+        height: 20vh;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .info-materias{
+        width: 100%;
+        height: 60vh;
+    }
+    .info-alumno img{
+        
+        height: 90%;
+        width: auto;
+    }
+
+}

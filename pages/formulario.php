@@ -71,7 +71,7 @@ if(!isset($_GET['id'])){
     
   </form>
 </div>
-
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/alerts-server.js"></script>
 </body>
 </html>
