@@ -43,7 +43,7 @@ try {
         }
     }else{
         foreach ($lista as $registro) { 
-            if($registro != 'null'){
+            if($registro != ''){
                 $mail->addAddress(Alumno::getCorreoAlumno($registro)[0][0]);
 
             }
@@ -58,10 +58,14 @@ try {
     
     $mail->send();
     echo 'Message has been sent';
+   
     ?>
     <script>location.href='../pages/admin.php?ok=Correos enviados'</script>
     <?php
 } catch (Exception $e) {
+
+    echo "Error: ".$e->getMessage();
+    
     ?>
     <script>location.href='../pages/admin.php?error=Error al enviar correos'</script>
     <?php

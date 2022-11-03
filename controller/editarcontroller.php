@@ -16,7 +16,7 @@ if(!isset($_POST['nombre']) || !isset($_POST['apellido']) || !isset($_POST['apel
     <script>location.href='../pages/formulario.php?id=<?php echo $_POST['id']; ?>&error=Faltan datos'</script>
     <?php 
 }
-
+$id=$_POST['id'];
 $nombre=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $apellido2=$_POST['apellido2'];
