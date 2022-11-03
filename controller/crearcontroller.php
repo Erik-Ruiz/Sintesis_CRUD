@@ -67,7 +67,7 @@ if(Alumno::crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$tel, $matr
     $image_file = $_FILES["fileToUpload"];
     
     // Image not defined, let's exit
-    if (count($image_file)==0) {
+    if ($image_file['name'] == '') {
         ?>
         <script>location.href='../pages/admin.php?ok=Todo Correcto'</script>
         <?php

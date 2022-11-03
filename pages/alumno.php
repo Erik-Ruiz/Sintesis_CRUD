@@ -28,9 +28,13 @@
 <div class='container-alumno'>
   <div class='info-alumno'>
     <img src=<?php echo "../img/alum/".$infoAlumno['matricula'].".png"; ?> alt="" class="img-alumno"/>
-    <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido2']; ?></p>
-    <p>DAW 2</p>
-    <p>Media: <?php echo Alumno::getMediaAlumno($infoAlumno['id'])['media'] ?></p>
+    
+    <div class="datos-alum">
+      <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido2']; ?></p>
+      <p>DAW 2</p>
+      <p>Media: <?php echo Alumno::getMediaAlumno($infoAlumno['id'])['media'] ?></p>
+    </div>
+    
   </div>
 
   <div style="overflow-y: scroll;" class='info-materias'>
