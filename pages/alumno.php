@@ -84,5 +84,6 @@
 
 </div>
 <script src="../js/veralumnos.js"></script>
+<script src="../js/alerts-server.js"></script>
 </body>
 </html>

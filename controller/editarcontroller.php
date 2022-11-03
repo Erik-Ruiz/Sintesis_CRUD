@@ -1,14 +1,52 @@
 <?php
 require_once '../models/alumno.php';
 require_once '../includes/sizeimg.inc.php';
+function genMatricula(){
+    $mat='';
+    for ($i=0; $i < 12; $i++) { 
+        $mat= $mat.rand(0,9);
+    }
+    return $mat;
+}
 
-$id=$_POST['id'];
+
+if(!isset($_POST['nombre']) || !isset($_POST['apellido']) || !isset($_POST['apellido2']) || !isset($_POST['correo']) || !isset($_POST['telefono']) || !isset($_POST['dni']) || !isset($_POST['id'])){
+    ?>
+    <script>location.href='../pages/formulario.php?id=<?php echo $_POST['dni']; ?>&error=Faltan datos'</script>
+    <?php 
+}
+
 $nombre=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $apellido2=$_POST['apellido2'];
 $correo=$_POST['correo'];
 $tel=$_POST['telefono'];
 $dni=$_POST['dni'];
+
+if(errorNombre($nombre) || errorNombre($apellido) || errorNombre($apellido2)){
+    ?>
+    <script>location.href='../pages/formulario.php?id=<?php echo $_POST['dni']; ?>&error=Error en el nombre o en el apellido'</script>
+    <?php 
+
+}
+
+if(errorEmail($correo)){
+    ?>
+    <script>location.href='../pages/formulario.php?id=<?php echo $_POST['dni']; ?>&error=Error en el correo'</script>
+    <?php 
+}
+
+if(errorTelefono($tel)){
+    ?>
+    <script>location.href='../pages/formulario.php?id=<?php echo $_POST['dni']; ?>&error=Error en el Telefono'</script>
+    <?php  
+}
+
+if(errorDni($dni)){
+    ?>
+    <script>location.href='../pages/formulario.php?id=<?php echo $_POST['dni']; ?>&error=Error en el DNI'</script>
+    <?php 
+}
 
 $matricula=$_POST['matricula'];
 
@@ -45,13 +83,18 @@ if($ok == 1){
     );
     
     GenerateThumbnail($target_dir.$matricula.'.png',$target_dir.$matricula.'.png',64,64);
-    echo "<script>location.href='../pages/admin.php'</script>";
-    echo "OK";
+    ?>
+    <script>location.href='../pages/admin.php?ok=Todo Correcto'</script>
+    <?php
+    
     }catch(Exception $e){
-        echo $e;
+        ?>
+        <script>location.href='../pages/admin.php?error=Error de imagen'</script>
+        <?php
     }
 }else{
-  echo "Error";
-  echo "<script>location.href='../pages/admin.php'</script>"; 
+    ?>
+    <script>location.href='../pages/admin.php?error=Error en parametros'</script>
+    <?php 
 }
 

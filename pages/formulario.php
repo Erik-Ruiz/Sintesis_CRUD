@@ -72,6 +72,6 @@ if(!isset($_GET['id'])){
   </form>
 </div>
 
-
+<script src="../js/alerts-server.js"></script>
 </body>
 </html>

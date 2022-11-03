@@ -58,7 +58,11 @@ try {
     
     $mail->send();
     echo 'Message has been sent';
-    echo "<script>location.href='../pages/admin.php'</script>";
+    ?>
+    <script>location.href='../pages/admin.php?ok=Correos enviados'</script>
+    <?php
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    ?>
+    <script>location.href='../pages/admin.php?error=Error al enviar correos'</script>
+    <?php
 }
