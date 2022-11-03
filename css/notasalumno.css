@@ -27,7 +27,7 @@ body {
 
     background: #9196a4;
 
-    border-radius: 8px;
+    border-radius: 3.5%;
 
     overflow: hidden;
 }
@@ -116,7 +116,7 @@ body {
 
     width: 300px;
 
-    margin-top: 35px;
+    margin-top: 30%;
 }
 
 .inputBox input {
