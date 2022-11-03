@@ -11,16 +11,17 @@
   
 ?>
 <div class="sidebar close">
-    <a href="../pages/admin.php">
+    
     <div class="logo-details">
-      <i class='bx bxl-c-plus-plus'></i>
+      <i class='bx bx-notepad'></i>
+      
       <span class="logo_name">Notas</span>
     </div>
-    </a>
+    
     <ul class="nav-links">
       <li>
         <a href="../pages/admin.php">
-        <i class="fa-solid fa-user"></i>
+        <i class='bx bx-list-ol' ></i>
           <span class="link_name">Listado alumnos</span>
         </a>
         <ul class="sub-menu blank">
@@ -28,8 +29,8 @@
         </ul>
       </li>
       <li>
-      <a href="../pages/formulario.php">
-          <i class='bx bx-grid-alt' ></i>
+        <a href="../pages/formulario.php">
+          <i class='bx bxs-user-plus'></i>
           <span class="link_name">Crear Alumno</span>
         </a>
         <ul class="sub-menu blank">
@@ -56,7 +57,7 @@
       <li>
       <li>
         <a href="./correo.php">
-          <i class='bx bx-line-chart' ></i>
+          <i class='bx bx-envelope' ></i>
           <span class="link_name">Crear Correo</span>
         </a>
         <ul class="sub-menu blank">
@@ -98,7 +99,7 @@
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <span class="text">ANALYTICS</span>
+      <span class="text">ANALYITICS</span>
     </div>
 
     <table class="table">
