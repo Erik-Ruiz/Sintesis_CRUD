@@ -29,37 +29,45 @@ const validarDNI=(dni)=>{
 
 
 const validarNota=(valor)=> {
-    Number.isInteger(numero) ||  Number.isFloat(valor) ? OK = true : OK = false;
-    return OK
+    !isNaN(valor)  ? OK = true : OK = false;
+    return OK;
 }
 
 const validarNombre = (val) => {
-    const usernameRegex = /^[a-z0-9_.]+$/
-    return usernameRegex.test(val)
-  }
+    const usernameRegex = /^[a-zA-Z]+$/;
+    return usernameRegex.test(val);
+}
 
 
-  const ValidadorDeCorreo =()=>{
-    
-    let msg;
-    userI = document.getElementById('iconU');
-    user = document.getElementById('correo');
-    correo = document.getElementById('correo').value;
-    
+const ValidadorDeCorreo =(correo)=>{
     if (correo.lenght !== 0){
-
         if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo)){
-            msg={status:true,msg:'valido'};
+            msg=true;
         }else{
-            msg={status:false,msg:'¡Correo no valido!'};
-            user.style.borderColor = 'red';
-            userI.style.color = 'red'; 
+            msg=false;
         }
     }else{
-        msg={status:false,msg:'Correo vacio'};
-        user.style.borderColor = 'red';
-        userI.style.color = 'red';
+        msg=false;
+    }
+    return msg;
+}
+
+const alertsForm=(event,msg)=>{
+    
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: msg,
+        
+    })
+    event.preventDefault();
+}
+
+
+
+const FormEditNota =(event)=>{
+    if(!validarNota(document.getElementById('nota').value)){
+        alertsForm(event,'Nota no valida')
     }
 
-    return msg;
 }
