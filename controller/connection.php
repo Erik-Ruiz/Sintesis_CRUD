@@ -1,9 +1,17 @@
 <?php
+<<<<<<< HEAD
+
+$server = '192.168.114.109';
+$username = 'admin1';
+$password = 'admin1234';
+$bd = 'bd_sintesis';
+=======
 require_once "config.php";
 $server = SERVIDOR;
 $username = USUARIO;
 $password = PASSWORD;
 $bd = BD;
+>>>>>>> bb08e384a123725e9887187538a7d45b772f2802
 // Nos conectamos a la base de datos mediante la funcion mysqli_connect
 $conexion = mysqli_connect($server,$username,$password,$bd);
 
