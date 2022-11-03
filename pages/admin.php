@@ -160,9 +160,9 @@
             <th scope="col"><input class="form-control me-2" type="search" id="apellido2" placeholder="Apellido 2" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" id="correo" placeholder="Correo" aria-label="Search"></th>
             <th scope="col"><input class="form-control me-2" type="search" id="dni" placeholder="DNI" aria-label="Search"></th>
-            <th scope="col" colspan="2"><button onclick="filtro()"  class="btn btn-info" >Buscar</button></th>
-          </tr>
-        </form>
+         </form>
+          <th scope="col" colspan="2"><button onclick="filtro()"  class="btn btn-info">Buscar</button></th>
+        </tr>
         </thead>
           <tr>
             <th scope="col">IMG</th>
