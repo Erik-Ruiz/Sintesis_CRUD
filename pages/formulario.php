@@ -3,12 +3,15 @@
     //require_once '../components/cabecera.html';
 
 ?> 
-<header>
-
-
-<link rel="stylesheet" href="../css/formulario.css">
-
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/formulario.css">
+    <title>Formulario</title>
+</head>
 <body>
     
 
@@ -21,6 +24,7 @@
     </form>
   </div>
 </nav> -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
 if(!isset($_GET['id'])){
   $action = "../controller/crearcontroller.php";
@@ -28,18 +32,55 @@ if(!isset($_GET['id'])){
   $action = "../controller/editarcontroller.php";
 }
 ?>
-<div class="container">
+
+<div class="box">
   <form class="form" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
     <h2>ALUMNO</h2>
     <?php 
     if(!isset($_GET['id'])){
     ?>
-    <p type="Nombre:"><input type="text" name="nombre"></input></p>
-    <p type="Primer apellido:"><input type="text" name="apellido"></input></p>
-    <p type="Segundo apellido:"><input type="text" name="apellido2"></input></p>
-    <p type="Correo:"><input type="email" name="correo"></input></p>
-    <p type="DNI:"><input type="text" name="dni"></input></p>
-    <p type="Telf.:"><input type="text" name="telefono"></input></p>
+    
+    <div class="flex">
+      <div class="inputBox">
+        <input type="text" required= "required" name="nombre" />
+        <span>Nombre</span>
+        <i></i>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" required="required" name="apellido">
+        <span>Primer Apellido</span>
+        <i></i>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" required="required" name="apellido2"></input>
+        <span>Segundo apellido</span>
+        <i></i>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="inputBox">
+        <input type="email" required="required" name="correo"></input>
+        <span>Correo</span>
+        <i></i>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" required="required" name="dni"></input>
+        <span>DNI</span>
+        <i></i>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" required="required" name="telefono"></input>
+        <span>Telefono</span>
+        <i></i>
+      </div>
+    </div>    
+
+    
     
     <?php
     }else{
@@ -47,17 +88,42 @@ if(!isset($_GET['id'])){
       require_once '../models/alumno.php';
       $infoAlumno=Alumno::getAlumnoId($id);
     ?>
-    <p type="Nombre:"><input type="text" name="nombre" value="<?php echo $infoAlumno['nombre'] ?>"></input></p>
+    <div class="inputBox">
+      <input type="text" name="nombre" required="required" value="<?php echo $infoAlumno['nombre'] ?>" />
+      <span>Nombre</span>
+      <i></i>
+    </div>
 
-    <p type="Primer apellido:"><input type="text" name="apellido" value="<?php echo $infoAlumno['apellido'] ?>"></input></p>
+    <div class="inputBox">
+      <input type="text" name="apellido" required="required" value="<?php echo $infoAlumno['apellido'] ?>"></input>
+      <span>Primer Apellido</span>
+      <i></i>
+    </div>
 
-    <p type="Segundo apellido:"><input type="text" name="apellido2" value="<?php echo $infoAlumno['apellido2'] ?>"></input></p>
+    <div class="inputBox">
+      <input type="text" name="apellido2" required="required" value="<?php echo $infoAlumno['apellido2'] ?>"></input>
+      <span>Segundo Apellido</span>
+      <i></i>
+    </div>
 
-    <p type="Correo:"><input type="email" name="correo" value="<?php echo $infoAlumno['correo'] ?>"></input></p>
+    <div class="inputBox">
+      <input type="email" name="correo" required="required" value="<?php echo $infoAlumno['correo'] ?>"></input>
+      <span>Email</span>
+      <i></i>
+    </div>
 
-    <p type="DNI:"><input type="text" name="dni" value="<?php echo $infoAlumno['dni'] ?>"></input></p>
+    <div class="inputBox">
+      <input type="text" name="dni" required="required" value="<?php echo $infoAlumno['dni'] ?>"></input>
+      <span>DNI</span>
+      <i></i>
+    </div>
 
-    <p type="Telf.:"><input type="text" name="telefono" value="<?php echo $infoAlumno['telefono'] ?>"></input></p>
+    <div class="inputBox">
+      <input type="text" name="telefono" required="required" value="<?php echo $infoAlumno['telefono'] ?>"></input>
+      <span>Telefono</span>
+      <i></i>
+    </div>
+
     <input type="hidden" name="matricula" value="<?php echo $infoAlumno['matricula'] ?>"></input>
     <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>"></input>
 
@@ -66,12 +132,12 @@ if(!isset($_GET['id'])){
 
     ?>
     <p type="IMG"><input type="file" name="fileToUpload"></input></p>
-    <button type="submit">Guardar</button>
+    <button type="submit" id="send">Guardar</button>
 
     
   </form>
 </div>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="../js/alerts-server.js"></script>
 </body>
 </html>

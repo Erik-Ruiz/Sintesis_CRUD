@@ -385,7 +385,7 @@ final class Alumno extends Persona{
             $stmt->execute();
 
             $id=$pdo->lastInsertId();
-            $sql2="INSERT INTO tbl_notas ('id_alumno','modulo','uf','nota') values (?,'M12','UF1','0'),(?,'M6','UF1','0'),(?,'M7','UF1','0'),(?,'M9','UF1','0'),(?,'M8','UF2','0'),(?,'M8','UF4','0'),(?,'M3','UF4','0'),(?,'M3','UF5','0'),(?,'M3','UF6','0'),(?,'M2','UF2','0');";
+            $sql2="INSERT INTO tbl_notasss (id_alumno,modulo,uf,nota) values (?,'M12','UF1','0'),(?,'M6','UF1','0'),(?,'M7','UF1','0'),(?,'M9','UF1','0'),(?,'M8','UF2','0'),(?,'M8','UF4','0'),(?,'M3','UF4','0'),(?,'M3','UF5','0'),(?,'M3','UF6','0'),(?,'M2','UF2','0');";
             $stmt=$pdo->prepare($sql2);
             $stmt->bindParam(1,$id);
             $stmt->bindParam(2,$id);
@@ -400,10 +400,11 @@ final class Alumno extends Persona{
             $stmt->execute();
 
             $pdo->commit();
-            echo "OK";
+            return true;
         }catch(Exception $e){
             $conexion->rollback();
             echo "Error: ".$e->getMessage();
+            return false;
         }
 
     }

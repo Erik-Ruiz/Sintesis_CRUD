@@ -1,9 +1,9 @@
 <?php
 
-define('SERVIDOR', "localhost");
+define('SERVIDOR', "192.168.114.109");
 
-define('USUARIO', 'root');
+define('USUARIO', 'admin1');
 
-define('PASSWORD', '');
+define('PASSWORD', 'admin1234');
 
 define('BD', 'bd_sintesis');
