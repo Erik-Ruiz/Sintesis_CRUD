@@ -24,6 +24,7 @@
     </form>
   </div>
 </nav> -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
 if(!isset($_GET['id'])){
   $action = "../controller/crearcontroller.php";
@@ -136,7 +137,7 @@ if(!isset($_GET['id'])){
     
   </form>
 </div>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="../js/alerts-server.js"></script>
 </body>
 </html>
