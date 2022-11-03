@@ -74,10 +74,18 @@ final class Alumno extends Persona{
         //require_once "../controller/config.php";
         $conexion=self::bd();//conexion con la bd
 
+        echo $_GET['nombre'];
+        if(isset($_GET['nombre'])){
+           $where="where nombre like '%".$_GET['nombre']."%' "; 
+        }else{
+           $where=''; 
+        }
+            
+
         define('NUM_ITEMS_BY_PAGE', 10);
 
         //Parte paginacion
-        $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
+        $resultado = $conexion->query("SELECT COUNT(*) as total_alu FROM tbl_alumno $where;");
         $row = $resultado->fetch_assoc();
         // Asignamos el numero de resultados a estas variables
         $num_total_rows = $row['total_alu'];
@@ -103,7 +111,7 @@ final class Alumno extends Persona{
 
 
         //Parte alumno
-        $sql="SELECT id, matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT $start, $paginas";
+        $sql="SELECT id, matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno $where LIMIT $start, $paginas";
 
 
         $stmt = mysqli_stmt_init($conexion);

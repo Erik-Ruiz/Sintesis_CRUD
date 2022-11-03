@@ -11,7 +11,7 @@
   
   require_once '../models/alumno.php';
 
-  $lista=alumno::getAlumnos();
+  $lista=Alumno::getAlumnos();
   $listaAlumno=$lista[0];
   $total_pages=$lista[1];
   $page=$lista[2];
