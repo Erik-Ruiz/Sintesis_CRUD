@@ -1,151 +1,60 @@
 /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
-    padding: 0;
-    margin: 0;
-
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+body{
+    background:#E4E9F7;
 }
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 100vh;
-
-    background: #E4E9F7;
-}
-
-.box {
-    display: flex;
-
-    position: relative;
-
-    width: 80%;
-    height: 420px;
-
-    background: #9196a4;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-
-}
-
-/* before: Añade esto antes del conteindo en el container*/
-.box::before {
-
-    content: '';
-
-    position: absolute;
-
-    top: -60%;
-    left: -60%;
-
-    width: 80%;
-    height: 420px;
-
-    background: linear-gradient(0deg, transparent, yellow, yellow);
-
-    transform-origin: bottom right; /*Sets the origin for an element's transformations */
-
-    animation: animate 8s linear infinite;
-
-}
-.box::after {
-
-    content: '';
-
-    position: absolute;
-
-    top: -60%;
-    left: -60%;
-
-    width: 80%;
-    height: 420px;
-
-    background: linear-gradient(0deg, transparent, yellow, yellow);
-
-    transform-origin: bottom right; /*Sets the origin for an element's transformations */
-
-    animation: animate 6s linear infinite;
-    animation-delay: -3s;
-
-}
-
-@keyframes animate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100%{
-        transform: rotate(360deg);
-    }
-}
-
-.form {
-
-    position: absolute;
-
-    inset: 2px;
-
-    background: #e6e6e6;
-
-    border-radius: 8px;
-
-    z-index: 10;
-
-    padding: 50px 40px;
-    display: flex;
-    flex-direction: column;
-    
-
-}
-
-.form h2 {
-    color: #78788c;
-
-    font-weight: 500;
-
-    text-align: center;
-
-    letter-spacing: 0.1em;
-}
-
-.inputBox {
-    position: relative;
-
-    width: 300px;
-
-    margin-top: 35px;
-}
-<<<<<<< HEAD
-
-.inputBox input {
-    position: relative;
+.container{
     width: 100%;
-    padding: 20px 10px 10px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #E4E9F7;
-    font-size: 1em;
-    letter-spacing: 0.05em;
-    z-index: 10;
-=======
-input:focus{
-    border-bottom:2px solid #78788c
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
+.form{
+    
+    width:380px; 
+    height:640px;
+    padding: 50px;
+    background:#e6e6e6;
+    border-radius:8px;
+    box-shadow:0 0 40px -10px #000;
+    margin: auto;
+    /* margin:calc(50vh - 220px) auto; */
+    padding:20px 30px;
+    /* max-width:calc(100vw - 40px); */
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+    position:relative
+}
+h2{
+    margin:10px 0;
+    padding-bottom:10px;width:180px;
+    color:#78788c;
+    border-bottom:3px solid #78788c
+}
+input{
+    width:100%;
+    padding:10px;
+    box-sizing:border-box;
+    background:none;
+    outline:none;
+    resize:none;
+    border:0;
+    font-family:'Montserrat',sans-serif;
+    transition:all .3s;
+    border-bottom:2px solid #bebed2
+}
+input:focus{
+    border-bottom:2px solid #78788c}
 p:before{
     content:attr(type);
     display:block;
-    margin:28px 0 0;
-    font-size:14px;
-    color:#5a5a5a
-}
+    margin:28px 0 0;font-size:14px;color:#5a5a5a}
 button{
     float:right;
     padding:8px 12px;
@@ -157,75 +66,6 @@ button{
     transition:all .3s}
 button:hover{
     background:#78788c;color:#fff
->>>>>>> c19226f4dafabcfbb038fead61bca7eaf9b5f63e
 }
-
-.inputBox span {
-    position: absolute;
-    left: 0;
-    padding: 20px 10px 10px;
-    font-size: 1em;
-    color: #8f8f8f;
-    pointer-events: none;
-    letter-spacing: 0.05em;
-    transition: 0.5s;
-}
-
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span {
-    color: #78788c;
-    transform: translateX(-10px) translateY(-34px);
-    font-size: 0.75em;
-}
-
-.inputBox i {
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 2px;
-
-    background: #78788c;
-
-    border-radius: 4px;
-
-    transition: 0.5s;
-
-    pointer-events: none;
-
-    z-index: 9;
-}
-
-.inputBox input:valid ~ i,
-.inputBox input:focus ~ i {
-    height: 44px;
-}
-
-#send {
-
-    margin-top: 25px;
-
-    border: none;
-    outline: none;
-
-    background:#78788c;
-    padding: 11px 25px;
-
-    width: 100%;
-
-    display: flex;
-    text-align: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-}
-
-#send:hover {
-    
-    opacity: 0.8;
-    transition: 0.3s;
-
-}
+span{
+    margin:0 5px 0 15px}

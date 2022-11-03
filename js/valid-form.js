@@ -35,7 +35,7 @@ const valPassw =()=>{
         pass.style.borderColor = 'red';
         passI.style.color = 'red';
     }
-    return msg
+    return msg;
 }
 
 

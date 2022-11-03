@@ -41,43 +41,45 @@ if(!isset($_GET['id'])){
     
     <div class="flex">
       <div class="inputBox">
-        <input type="text" required= "required" name="nombre" />
-        <span>Nombre</span>
+        <input type="text" required= "required" name="nombre" />  
+        <span>Nombre</span>      
         <i></i>
       </div>
 
       <div class="inputBox">
+      <span>Primer Apellido</span>
         <input type="text" required="required" name="apellido">
-        <span>Primer Apellido</span>
         <i></i>
       </div>
 
       <div class="inputBox">
+      <span>Segundo apellido</span>
         <input type="text" required="required" name="apellido2"></input>
-        <span>Segundo apellido</span>
         <i></i>
       </div>
     </div>
 
     <div class="">
       <div class="inputBox">
+      <span>Correo</span>
         <input type="email" required="required" name="correo"></input>
-        <span>Correo</span>
         <i></i>
       </div>
 
       <div class="inputBox">
+      <span>DNI</span>
         <input type="text" required="required" name="dni"></input>
-        <span>DNI</span>
         <i></i>
       </div>
 
       <div class="inputBox">
+      <span>Telefono</span>
         <input type="text" required="required" name="telefono"></input>
-        <span>Telefono</span>
         <i></i>
       </div>
     </div>    
+    <p type="IMG"><input type="file" name="fileToUpload"></input></p>
+    <button type="submit" id="send">Guardar</button>
 
     
     
@@ -130,8 +132,7 @@ if(!isset($_GET['id'])){
     }
 
     ?>
-    <p type="IMG"><input type="file" name="fileToUpload"></input></p>
-    <button type="submit" id="send">Guardar</button>
+    
 
     
   </form>
