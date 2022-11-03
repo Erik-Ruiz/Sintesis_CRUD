@@ -20,11 +20,9 @@ body {
 }
 
 .box {
-    display: flex;
-
     position: relative;
 
-    width: 80%;
+    width: 380px;
     height: 420px;
 
     background: #9196a4;
@@ -32,7 +30,6 @@ body {
     border-radius: 8px;
 
     overflow: hidden;
-
 }
 
 /* before: Añade esto antes del conteindo en el container*/
@@ -42,17 +39,17 @@ body {
 
     position: absolute;
 
-    top: -60%;
-    left: -60%;
+    top: -50%;
+    left: -50%;
 
-    width: 80%;
+    width: 380px;
     height: 420px;
 
     background: linear-gradient(0deg, transparent, yellow, yellow);
 
     transform-origin: bottom right; /*Sets the origin for an element's transformations */
 
-    animation: animate 8s linear infinite;
+    animation: animate 6s linear infinite;
 
 }
 .box::after {
@@ -61,10 +58,10 @@ body {
 
     position: absolute;
 
-    top: -60%;
-    left: -60%;
+    top: -50%;
+    left: -50%;
 
-    width: 80%;
+    width: 380px;
     height: 420px;
 
     background: linear-gradient(0deg, transparent, yellow, yellow);
@@ -101,7 +98,6 @@ body {
     padding: 50px 40px;
     display: flex;
     flex-direction: column;
-    
 
 }
 
