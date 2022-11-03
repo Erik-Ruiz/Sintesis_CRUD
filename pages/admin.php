@@ -154,13 +154,13 @@
        <form class="d-flex" role="search">
           <tr>
             <th></th>
-            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></th>
-            <th scope="col" colspan="2"><input type="submit" class="btn btn-info" value="Buscar"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Matricula" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Nombre" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Apellido" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Apellido 2" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="Correo" aria-label="Search"></th>
+            <th scope="col"><input class="form-control me-2" type="search" placeholder="DNI" aria-label="Search"></th>
+            <th scope="col" colspan="2"><input onclick="filtro()" type="submit" class="btn btn-info" value="Buscar"></th>
           </tr>
         </form>
         </thead>
@@ -237,6 +237,7 @@
   <script src="../js/sidebar.js"></script>
   <script src="../js/veralumnos.js"></script>
   <script src="../js/alerts-server.js"></script>
+  <script src="../js/filtrado.js"></script>
 </body>
 
 
