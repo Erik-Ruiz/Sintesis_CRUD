@@ -37,3 +37,29 @@ const validarNombre = (val) => {
     const usernameRegex = /^[a-z0-9_.]+$/
     return usernameRegex.test(val)
   }
+
+
+  const ValidadorDeCorreo =()=>{
+    
+    let msg;
+    userI = document.getElementById('iconU');
+    user = document.getElementById('correo');
+    correo = document.getElementById('correo').value;
+    
+    if (correo.lenght !== 0){
+
+        if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo)){
+            msg={status:true,msg:'valido'};
+        }else{
+            msg={status:false,msg:'¡Correo no valido!'};
+            user.style.borderColor = 'red';
+            userI.style.color = 'red'; 
+        }
+    }else{
+        msg={status:false,msg:'Correo vacio'};
+        user.style.borderColor = 'red';
+        userI.style.color = 'red';
+    }
+
+    return msg;
+}

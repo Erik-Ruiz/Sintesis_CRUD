@@ -20,6 +20,55 @@ final class Alumno extends Persona{
         require  "../controller/connection.php";
         return $conexion;
     }
+    // public static function getAlumnosFilter($sql){
+    //     //require_once "../controller/config.php";
+    //     $conexion=self::bd();
+
+    //     define('NUM_ITEMS_BY_PAGE', 9);
+
+    //     //Parte paginacion
+    //     $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
+    //     $row = $resultado->fetch_assoc();
+    //     // Asignamos el numero de resultados a estas variables
+    //     $num_total_rows = $row['total_alu'];
+    //     if ($num_total_rows > 0) {
+    //         $page = false;
+    
+    //     //Examinamos la pagina a mostrar y el inicio del registro a mostrar
+    //     if (isset($_GET["page"])) {
+    //         $page = $_GET["page"];
+    //     }
+    
+    //     if (!$page) {
+    //         $start = 0;
+    //         $page = 1;
+    //     } else {
+    //         $start = ($page - 1) * NUM_ITEMS_BY_PAGE;
+    //     }
+    //     //Calculo el total de paginas
+    //     $total_pages = ceil($num_total_rows / NUM_ITEMS_BY_PAGE);
+    //     }
+  
+    //     $paginas = NUM_ITEMS_BY_PAGE;
+
+
+    //     //Parte alumno
+    //     $sql="SELECT matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT where matricula like '%$filtroP%' $start, $paginas";
+
+
+    //     $stmt = mysqli_stmt_init($conexion);
+    //     mysqli_stmt_prepare($stmt, $sql);
+    //     mysqli_stmt_execute($stmt);
+                
+    //     $resultadoconsulta= mysqli_stmt_get_result($stmt);
+
+    //     mysqli_fetch_assoc($resultadoconsulta);
+
+    //     mysqli_stmt_close($stmt);
+    //     mysqli_fetch_assoc($resultadoconsulta);
+    //     $results = array($resultadoconsulta,$total_pages,$page);
+    //     return $results;
+    // }
     public static function getAlumnos(){
         
         //require_once "../controller/config.php";
@@ -98,7 +147,7 @@ final class Alumno extends Persona{
         $conexion=self::bd();
         
 
-        $sql="SELECT avg(nota) as media FROM tbl_notas where id_alumno = ?";
+        $sql="SELECT round(avg(nota),2) as media FROM tbl_notas where id_alumno = ?";
 
         $stmt = mysqli_stmt_init($conexion);
         mysqli_stmt_prepare($stmt,$sql);
@@ -266,46 +315,101 @@ final class Alumno extends Persona{
         mysqli_stmt_close($stmt);
         
     }
-    public static function crearAlumno($nombre, $apellido, $apellido2, $dni, $telefono, $correo,$clase,$promocion,$matricula){
+    public static function crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$telefono, $matricula, $promocion, $clase){
         $conexion=self::bd();
      
             
-        mysqli_autocommit($conexion,false);#Desactivar el auto commit
+        // mysqli_autocommit($conexion,false);#Desactivar el auto commit
 
-        try {
+        // try {
             
-            mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
+        //     mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
             
-            // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
-            // $stmt = mysqli_stmt_init($conexion);
-            // mysqli_stmt_prepare($stmt, $sql);
-            // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
-            // mysqli_stmt_execute($stmt);
+        //     // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
+        //     // $stmt = mysqli_stmt_init($conexion);
+        //     // mysqli_stmt_prepare($stmt, $sql);
+        //     // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
+        //     // mysqli_stmt_execute($stmt);
             
-            $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
+        //     $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
             
             
-            mysqli_query($conexion,$sql1);
+        //     mysqli_query($conexion,$sql1);
 
-            $id=mysqli_insert_id($conexion);#Ultimo ID insertado
-            echo $id;
+        //     $id=mysqli_insert_id($conexion);#Ultimo ID insertado
+        //     echo $id;
 
-            $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
-            mysqli_query($conexion,$sql2);
+        //     $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
+        //     mysqli_query($conexion,$sql2);
         
-            mysqli_commit($conexion);
+        //     mysqli_commit($conexion);
         
             
-            mysqli_autocommit($conexion,true);
-            return true;
+        //     mysqli_autocommit($conexion,true);
+        //     return true;
 
-        } catch(Exception $e) {
-            mysqli_rollback($conexion);
-            mysqli_autocommit($conexion,true);
+        // } catch(Exception $e) {
+        //     mysqli_rollback($conexion);
+        //     mysqli_autocommit($conexion,true);
+        //     return false;
+        // }
+       
+
+        // try{
+        //     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     $conexion->beginTransaction();
+        //     $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
+        //     $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+        //     $conexion->commit();
+        // }catch(Exception $e) {
+        //     $conexion->rollback();
+        //     echo 'Fallo: ',  $e->getMessage(), "\n";
+        // }
+        // }
+        
+        
+        try{
+            
+            $conexion->begin_transaction();
+            $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
+            $id =mysqli_insert_id($conexion);
+            $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+            $conexion->commit();
+            return TRUE;
+        }catch(Exception $e){
+            $conexion->rollback();
+            echo 'Fallo: ',  $e->getMessage(), "\n";
+            echo "<script>location.href=\"../pages/admin.php?peli=  $e->getMessage()\"</script>";
             return false;
-        }
 
-        
+        }
+        // try{
+        //     mysqli_begin_transaction($conexion);
+        //     $stmt1 = mysqli_stmt_init($conexion);
+        //     $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');"
+        //     mysqli_stmt_prepare($stmt1, $sql1);
+        //     mysqli_stmt_bind_param($stmt1, "sssssssss", $nombre, $apellido, $apellido2, $correo, $dni,$telefono, $matricula, $promocion, $clase);
+        //     mysqli_stmt_execute($stmt1);
+        //     $id =mysqli_insert_id($conexion);
+
+        //     $stmt2 = mysqli_stmt_init($conexion);
+        //     $sql2="INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values (?,'M12','UF1','0'),(?,'M6','UF1','0'),(?,'M7','UF1','0'),(?,'M9','UF1','0'),(?,'M8','UF2','0'),(?,'M8','UF4','0'),(?,'M3','UF4','0'),(?,'M3','UF5','0'),(?,'M3','UF6','0'),(?,'M2','UF2','0')";
+        //     mysqli_stmt_prepare($stmt2, $sql2);
+        //     mysqli_stmt_bind_param($stmt2, "iiiiiiiiii",$id,$id,$id,$id,$id,$id,$id,$id,$id,$id);
+        //     mysqli_stmt_execute($stmt2);
+
+        //     mysqli_stmt_close($stmt1);
+        //     mysqli_stmt_close($stmt2);
+        //     mysqli_commit($conexion);
+        //     return true;
+        // } catch (Exception $e) {
+        //     mysqli_rollback($conexion);
+        //     echo $e->getMessage(), "\n";
+        //     echo "Error al insertar el  registro";
+        //     return false;
+        // }
+
+
     }
 
 
@@ -344,16 +448,17 @@ final class Alumno extends Persona{
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            $ok=true;
+            
             try{
-              unlink('../img/alum/'.$matricula[0]['matricula'].'.png');  
+              unlink('../img/alum/'.$matricula['matricula'].'.png');
+              $ok='ok';  
             }catch(Exception $e){
                 
             }
             
 
         }catch(Exception $e){
-            $ok=false;
+            $ok='nok';
         }finally{
             return $ok;
         }

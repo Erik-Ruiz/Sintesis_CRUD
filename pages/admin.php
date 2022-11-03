@@ -28,6 +28,15 @@
     </a>
     <ul class="nav-links">
       <li>
+        <a href="../pages/admin.php">
+        <i class="fa-solid fa-user"></i>
+          <span class="link_name">Listado alumnos</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../pages/admin.php">Listado alumnos</a></li>
+        </ul>
+      </li>
+      <li>
         <a href="../pages/formulario.php">
           <i class='bx bx-grid-alt' ></i>
           <span class="link_name">Crear Alumno</span>
@@ -226,7 +235,7 @@
               </div>
   <script src="../js/sidebar.js"></script>
   <script src="../js/veralumnos.js"></script>
-
+  <script src="../js/alerts-server.js"></script>
 </body>
 
 

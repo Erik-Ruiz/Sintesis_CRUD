@@ -28,13 +28,16 @@
 <div class='container-alumno'>
   <div class='info-alumno'>
     <img src=<?php echo "../img/alum/".$infoAlumno['matricula'].".png"; ?> alt="" class="img-alumno"/>
-    <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido2']; ?></p>
-    <p>DAW 2</p>
-    <p>Media: <?php echo Alumno::getMediaAlumno($infoAlumno['id'])['media'] ?></p>
-    <button>Guardar</button>
+    
+    <div class="datos-alum">
+      <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido2']; ?></p>
+      <p>DAW 2</p>
+      <p>Media: <?php echo Alumno::getMediaAlumno($infoAlumno['id'])['media'] ?></p>
+    </div>
+    
   </div>
 
-  <div class='info-materias'>
+  <div style="overflow-y: scroll;" class='info-materias'>
 
     <!-- Bucle Modulo -->
     
@@ -42,7 +45,7 @@
       //var_dump($infoMaterias[0]);
       for ($i=0; $i < count($infoMaterias) ; $i++) { 
         
-        echo "<div class='materia'><div class='materia-titulo'><h1>".$infoMaterias[$i][0]."</h1></div>";
+        echo "<div  class='materia'><div class='materia-titulo'><h1>".$infoMaterias[$i][0]."</h1></div>";
       
       ?>
 
@@ -85,5 +88,6 @@
 
 </div>
 <script src="../js/veralumnos.js"></script>
+<script src="../js/alerts-server.js"></script>
 </body>
 </html>

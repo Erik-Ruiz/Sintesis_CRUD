@@ -21,7 +21,7 @@ function errorNombre($nombre){
 }
 
 function errorNota($nota){
-    if(is_float($nota) || is_int($nota)){
+    if(is_numeric($nota)){
         $error=false;
     }else{
         $error=true;
@@ -29,12 +29,16 @@ function errorNota($nota){
     return $error;
 }
 
-function is_valid_dni($dni){
+function errorDni($dni){
     $letter = substr($dni, -1);
     $numbers = substr($dni, 0, -1);
   
     if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numbers%23, 1) == $letter && strlen($letter) == 1 && strlen ($numbers) == 8 ){
-      return true;
+      return false;
     }
-    return false;
+    return true;
+}
+
+function errorTelefono($telefono){
+    return !preg_match('/^[0-9]{9,9}$/', $telefono);
 }

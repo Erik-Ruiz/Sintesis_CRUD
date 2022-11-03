@@ -19,6 +19,15 @@
     </a>
     <ul class="nav-links">
       <li>
+        <a href="../pages/admin.php">
+        <i class="fa-solid fa-user"></i>
+          <span class="link_name">Listado alumnos</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../pages/admin.php">Listado alumnos</a></li>
+        </ul>
+      </li>
+      <li>
       <a href="../pages/formulario.php">
           <i class='bx bx-grid-alt' ></i>
           <span class="link_name">Crear Alumno</span>
@@ -124,7 +133,7 @@
               <?php echo $mejoAlumno['nombre']." ".$mejoAlumno['apellido']." ".$mejoAlumno['apellido2'] ?>
             </td>
 
-            <td><button class="btn btn-success"  onclick=verAlumno(<?php echo $mejoAlumno['id'];?>)><i class="fa-regular fa-eye"></i></button></td>
+            <td><button class="btn btn-success"  onclick=irVer(<?php echo $mejoAlumno['id'];?>)><i class="fa-regular fa-eye"></i></button></td>
           </tr>
           <?php 
           $pos++;

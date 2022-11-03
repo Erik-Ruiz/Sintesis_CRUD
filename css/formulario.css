@@ -122,6 +122,7 @@ body {
 
     margin-top: 35px;
 }
+<<<<<<< HEAD
 
 .inputBox input {
     position: relative;
@@ -134,6 +135,29 @@ body {
     font-size: 1em;
     letter-spacing: 0.05em;
     z-index: 10;
+=======
+input:focus{
+    border-bottom:2px solid #78788c
+}
+p:before{
+    content:attr(type);
+    display:block;
+    margin:28px 0 0;
+    font-size:14px;
+    color:#5a5a5a
+}
+button{
+    float:right;
+    padding:8px 12px;
+    margin:8px 0 0;
+    font-family:'Montserrat',sans-serif;
+    border:2px solid #78788c;
+    background:0;color:#5a5a6e;
+    cursor:pointer;
+    transition:all .3s}
+button:hover{
+    background:#78788c;color:#fff
+>>>>>>> c19226f4dafabcfbb038fead61bca7eaf9b5f63e
 }
 
 .inputBox span {

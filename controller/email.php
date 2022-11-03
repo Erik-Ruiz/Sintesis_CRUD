@@ -4,7 +4,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\SMTP;//Servidor al que se le envia el correo
 
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
@@ -43,7 +43,7 @@ try {
         }
     }else{
         foreach ($lista as $registro) { 
-            if($registro != 'null'){
+            if($registro != ''){
                 $mail->addAddress(Alumno::getCorreoAlumno($registro)[0][0]);
 
             }
@@ -58,7 +58,15 @@ try {
     
     $mail->send();
     echo 'Message has been sent';
-    echo "<script>location.href='../pages/admin.php'</script>";
+   
+    ?>
+    <script>location.href='../pages/admin.php?ok=Correos enviados'</script>
+    <?php
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+    echo "Error: ".$e->getMessage();
+    
+    ?>
+    <script>location.href='../pages/admin.php?error=Error al enviar correos'</script>
+    <?php
 }
