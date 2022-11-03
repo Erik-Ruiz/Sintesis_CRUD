@@ -74,10 +74,18 @@ final class Alumno extends Persona{
         //require_once "../controller/config.php";
         $conexion=self::bd();//conexion con la bd
 
+        //echo $_GET['nombre'];
+        if(isset($_GET['nombre'])){
+           $where="where nombre like '%".$_GET['nombre']."%' "; 
+        }else{
+           $where=''; 
+        }
+            
+
         define('NUM_ITEMS_BY_PAGE', 10);
 
         //Parte paginacion
-        $resultado = $conexion->query('SELECT COUNT(*) as total_alu FROM tbl_alumno;');
+        $resultado = $conexion->query("SELECT COUNT(*) as total_alu FROM tbl_alumno $where;");
         $row = $resultado->fetch_assoc();
         // Asignamos el numero de resultados a estas variables
         $num_total_rows = $row['total_alu'];
@@ -103,7 +111,7 @@ final class Alumno extends Persona{
 
 
         //Parte alumno
-        $sql="SELECT id, matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno LIMIT $start, $paginas";
+        $sql="SELECT id, matricula, nombre, apellido, apellido2, correo, dni FROM tbl_alumno $where LIMIT $start, $paginas";
 
 
         $stmt = mysqli_stmt_init($conexion);
@@ -316,99 +324,96 @@ final class Alumno extends Persona{
         
     }
     public static function crearAlumno($nombre, $apellido, $apellido2, $correo, $dni,$telefono, $matricula, $promocion, $clase){
-        $conexion=self::bd();
-     
-            
-        // mysqli_autocommit($conexion,false);#Desactivar el auto commit
-
-        // try {
-            
-        //     mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_ONLY);#Empieza la transacion
-            
-        //     // $sql="INSERT INTO tbl_alumno (nombre,apellido, apellido2, dni, telefono, correo, clase, promocion, matricula) values (?,?,?,?,?,?,?,?,?)";
-        //     // $stmt = mysqli_stmt_init($conexion);
-        //     // mysqli_stmt_prepare($stmt, $sql);
-        //     // mysqli_stmt_bind_param($stmt, "sssssssss", $nombre, $apellido, $apellido2, $dni, $telefono,$correo, $clase, $promocion, $matricula);
-        //     // mysqli_stmt_execute($stmt);
-            
-        //     $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$dni', '$telefono','$correo', '$clase', '$promocion', '$matricula');";
-            
-            
-        //     mysqli_query($conexion,$sql1);
-
-        //     $id=mysqli_insert_id($conexion);#Ultimo ID insertado
-        //     echo $id;
-
-        //     $sql2 = "INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
-        //     mysqli_query($conexion,$sql2);
-        
-        //     mysqli_commit($conexion);
-        
-            
-        //     mysqli_autocommit($conexion,true);
-        //     return true;
-
-        // } catch(Exception $e) {
-        //     mysqli_rollback($conexion);
-        //     mysqli_autocommit($conexion,true);
-        //     return false;
-        // }
-       
-
+        require_once '../controller/connection.php';
+        // $conexion->autocommit(FALSE);
         // try{
-        //     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //     $conexion->beginTransaction();
+            
+        //     $conexion->begin_transaction();
         //     $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
-        //     $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+        //     $id =mysqli_insert_id($conexion);
+        //     $conexion->query("INSERT INTO ss (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
         //     $conexion->commit();
-        // }catch(Exception $e) {
+        //     return TRUE;
+        // }catch(Exception $e){
         //     $conexion->rollback();
         //     echo 'Fallo: ',  $e->getMessage(), "\n";
-        // }
-        // }
-        
-        
-        try{
-            
-            $conexion->begin_transaction();
-            $conexion->query("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
-            $id =mysqli_insert_id($conexion);
-            $conexion->query("INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
-            $conexion->commit();
-            return TRUE;
-        }catch(Exception $e){
-            $conexion->rollback();
-            echo 'Fallo: ',  $e->getMessage(), "\n";
-            echo "<script>location.href=\"../pages/admin.php?peli=  $e->getMessage()\"</script>";
-            return false;
+        //     return false;
 
-        }
+        // }
+            
         // try{
         //     mysqli_begin_transaction($conexion);
-        //     $stmt1 = mysqli_stmt_init($conexion);
-        //     $sql1 = "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');"
-        //     mysqli_stmt_prepare($stmt1, $sql1);
-        //     mysqli_stmt_bind_param($stmt1, "sssssssss", $nombre, $apellido, $apellido2, $correo, $dni,$telefono, $matricula, $promocion, $clase);
-        //     mysqli_stmt_execute($stmt1);
-        //     $id =mysqli_insert_id($conexion);
 
-        //     $stmt2 = mysqli_stmt_init($conexion);
-        //     $sql2="INSERT INTO tbl_notas (id_alumno,modulo,uf,nota) values (?,'M12','UF1','0'),(?,'M6','UF1','0'),(?,'M7','UF1','0'),(?,'M9','UF1','0'),(?,'M8','UF2','0'),(?,'M8','UF4','0'),(?,'M3','UF4','0'),(?,'M3','UF5','0'),(?,'M3','UF6','0'),(?,'M2','UF2','0')";
-        //     mysqli_stmt_prepare($stmt2, $sql2);
-        //     mysqli_stmt_bind_param($stmt2, "iiiiiiiiii",$id,$id,$id,$id,$id,$id,$id,$id,$id,$id);
-        //     mysqli_stmt_execute($stmt2);
+        //     $sql1= "INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');";
+        //     mysqli_query($conexion, $sql1);
+        //     $id=mysqli_insert_id($conexion);
+        //     $sql2= "INSERT INTO tbl_notassssASA ('id_alumno','modulo','uf','nota') values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');";
+        //     mysqli_query($conexion, $sql2);
+        //     mysqli_commit($conexion, TRUE);
+        //     return TRUE;
 
-        //     mysqli_stmt_close($stmt1);
-        //     mysqli_stmt_close($stmt2);
-        //     mysqli_commit($conexion);
-        //     return true;
         // } catch (Exception $e) {
-        //     mysqli_rollback($conexion);
-        //     echo $e->getMessage(), "\n";
-        //     echo "Error al insertar el  registro";
-        //     return false;
+        //     // Something went wrong. Rollback
+        //     $conexion->rollback();
+        //     // Rethrow the exception so that PHP does not continue
+        //     // with the execution and the error can be logged in the error_log
+        //     echo 'Fallo: ',  $e->getMessage(), "\n";
+        //     die();
         // }
 
+//         mysqli_query("start transaction;");
+
+// //db_res calls a custom function that performs a mysql_query on the query
+//         $res1 = db_res("INSERT INTO tbl_alumno values (null,'$nombre', '$apellido', '$apellido2', '$correo', '$dni','$telefono', '$matricula', '$promocion', '$clase');");
+//         $id=mysqli_insert_id($conexion);
+//         $res2 = db_res("INSERT INTO tbl_notassssASA ('id_alumno','modulo','uf','nota') values ($id,'M12','UF1','0'),($id,'M6','UF1','0'),($id,'M7','UF1','0'),($id,'M9','UF1','0'),($id,'M8','UF2','0'),($id,'M8','UF4','0'),($id,'M3','UF4','0'),($id,'M3','UF5','0'),($id,'M3','UF6','0'),($id,'M2','UF2','0');");
+
+//         if( $res1 && $res2)
+//         {
+//         mysqli_query("commit;");
+//         }
+//         else
+//         {
+//         mysqli_query("rollback;");
+//         }
+        try{
+            $pdo->beginTransaction();
+            
+            $sql="INSERT INTO tbl_alumno values (null,?,?,?,?,?,?,?,?,?);";
+            $stmt=$pdo->prepare($sql);
+            $stmt->bindParam(1,$nombre);
+            $stmt->bindParam(2,$apellido);
+            $stmt->bindParam(3,$apellido2);
+            $stmt->bindParam(4,$correo);
+            $stmt->bindParam(5,$dni);
+            $stmt->bindParam(6,$telefono);
+            $stmt->bindParam(7,$matricula);
+            $stmt->bindParam(8,$promocion);
+            $stmt->bindParam(9,$clase);
+            $stmt->execute();
+
+            $id=$pdo->lastInsertId();
+            $sql2="INSERT INTO tbl_notasss (id_alumno,modulo,uf,nota) values (?,'M12','UF1','0'),(?,'M6','UF1','0'),(?,'M7','UF1','0'),(?,'M9','UF1','0'),(?,'M8','UF2','0'),(?,'M8','UF4','0'),(?,'M3','UF4','0'),(?,'M3','UF5','0'),(?,'M3','UF6','0'),(?,'M2','UF2','0');";
+            $stmt=$pdo->prepare($sql2);
+            $stmt->bindParam(1,$id);
+            $stmt->bindParam(2,$id);
+            $stmt->bindParam(3,$id);
+            $stmt->bindParam(4,$id);
+            $stmt->bindParam(5,$id);
+            $stmt->bindParam(6,$id);
+            $stmt->bindParam(7,$id);
+            $stmt->bindParam(8,$id);
+            $stmt->bindParam(9,$id);
+            $stmt->bindParam(10,$id);
+            $stmt->execute();
+
+            $pdo->commit();
+            return true;
+        }catch(Exception $e){
+            $conexion->rollback();
+            echo "Error: ".$e->getMessage();
+            return false;
+        }
 
     }
 
