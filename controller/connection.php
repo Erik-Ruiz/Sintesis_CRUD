@@ -1,6 +1,6 @@
 <?php
 
-$server = 'localhost';
+$server = '192.168.114.109';
 $username = 'admin1';
 $password = 'admin1234';
 $bd = 'bd_sintesis';
