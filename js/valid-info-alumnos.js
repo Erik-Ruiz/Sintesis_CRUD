@@ -26,40 +26,86 @@ const validarDNI=(dni)=>{
     }
 }
 
+const validarTelefono =(tel)=>{
+    if(tel.length == 9 && !isNaN(valor)){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 const validarNota=(valor)=> {
-    Number.isInteger(numero) ||  Number.isFloat(valor) ? OK = true : OK = false;
-    return OK
+    !isNaN(valor)  ? OK = true : OK = false;
+    return OK;
 }
 
 const validarNombre = (val) => {
-    const usernameRegex = /^[a-z0-9_.]+$/
-    return usernameRegex.test(val)
-  }
+    const usernameRegex = /^[a-zA-Z]+$/;
+    return !usernameRegex.test(val);
+}
 
 
-  const ValidadorDeCorreo =()=>{
-    
-    let msg;
-    userI = document.getElementById('iconU');
-    user = document.getElementById('correo');
-    correo = document.getElementById('correo').value;
-    
+const ValidadorDeCorreo =(correo)=>{
     if (correo.lenght !== 0){
-
         if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo)){
-            msg={status:true,msg:'valido'};
+            msg=true;
         }else{
-            msg={status:false,msg:'¡Correo no valido!'};
-            user.style.borderColor = 'red';
-            userI.style.color = 'red'; 
+            msg=false;
         }
     }else{
-        msg={status:false,msg:'Correo vacio'};
-        user.style.borderColor = 'red';
-        userI.style.color = 'red';
+        msg=false;
+    }
+    return msg;
+}
+
+const alertsForm=(msg)=>{
+    
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: msg, 
+    })
+    
+}
+
+
+
+const FormEditNota =(event)=>{
+    
+    
+    if(!validarNota(document.getElementById('nota').value)){
+        event.preventDefault();
+        alertsForm('Nota no valida')
+    }
+}
+
+
+const FormAlumno =(event)=>{
+    let nombre = document.getElementById('nombre').value
+    let apellido = document.getElementById('apellido').value
+    let apellido2 = document.getElementById('apellido2').value
+    let correo = document.getElementById('correo').value
+    let tel = document.getElementById('tel').value
+    let dni = document.getElementById('dni').value
+    
+    if(validarNombre(nombre) || validarNombre(apellido) || validarNombre(apellido2)){
+        event.preventDefault();
+        alertsForm('Nombre o apellidos invalidos');
     }
 
-    return msg;
+    if(!validarDNI(dni)){
+        event.preventDefault();
+        alertsForm('DNI o NIE invalido')  
+    }
+
+    if(!ValidadorDeCorreo(correo)){
+        event.preventDefault();
+        alertsForm('Correo invalido');
+    }
+
+    if(!validarTelefono(tel)){
+        event.preventDefault();
+        alertsForm('Telefono invalido');
+    }
 }

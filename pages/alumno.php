@@ -106,7 +106,14 @@
 
     <div class='container-alumno'>
   <div class='info-alumno'>
-    <img src=<?php echo "../img/alum/".$infoAlumno['matricula'].".png"; ?> alt="" class="img-alumno"/>
+    <?php 
+    if(file_exists("../img/alum/".$infoAlumno['matricula'].".png")){
+      $foto="../img/alum/".$infoAlumno['matricula'].".png";
+    }else{
+      $foto="../img/guest-user.jpg";
+    }
+    ?>
+    <img src=<?php echo $foto; ?> alt="" class="img-alumno"/>
     
     <div class="datos-alum">
       <p><?php echo $infoAlumno['nombre']; ?> <?php echo $infoAlumno['apellido']; ?> <?php echo $infoAlumno['apellido2']; ?></p>

@@ -13,7 +13,7 @@
     <title>Formulario</title>
 </head>
 <body>
-    
+
 
   
 <!-- <nav class="navbar bg-dark">
@@ -34,7 +34,7 @@ if(!isset($_GET['id'])){
 ?>
 
 <div class="box">
-  <form class="form" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
+  <form class="form" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data" onsubmit="FormAlumno(event)">
     <h2>ALUMNO</h2>
     <?php 
     if(!isset($_GET['id'])){
@@ -42,20 +42,20 @@ if(!isset($_GET['id'])){
     
     <div class="flex">
       <div class="inputBox">
-        <input type="text" required= "required" name="nombre" />  
+        <input type="text" required= "required" name="nombre" id="nombre"/>  
         <span>Nombre</span>      
         <i></i>
       </div>
 
       <div class="inputBox">
       <span>Primer Apellido</span>
-        <input type="text" required="required" name="apellido">
+        <input type="text" required="required" name="apellido" id="apellido">
         <i></i>
       </div>
 
       <div class="inputBox">
       <span>Segundo apellido</span>
-        <input type="text" required="required" name="apellido2"></input>
+        <input type="text" required="required" name="apellido2" id="apellido2"></input>
         <i></i>
       </div>
     </div>
@@ -63,19 +63,19 @@ if(!isset($_GET['id'])){
     <div class="">
       <div class="inputBox">
       <span>Correo</span>
-        <input type="email" required="required" name="correo"></input>
+        <input type="email" required="required" name="correo" id="correo"></input>
         <i></i>
       </div>
 
       <div class="inputBox">
       <span>DNI</span>
-        <input type="text" required="required" name="dni"></input>
+        <input type="text" required="required" name="dni" id="dni"></input>
         <i></i>
       </div>
 
       <div class="inputBox">
       <span>Telefono</span>
-        <input type="text" required="required" name="telefono"></input>
+        <input type="text" required="required" name="telefono" id="tel"></input>
         <i></i>
       </div>
     </div>    
@@ -91,37 +91,37 @@ if(!isset($_GET['id'])){
       $infoAlumno=Alumno::getAlumnoId($id);
     ?>
     <div class="inputBox">
-      <input type="text" name="nombre" required="required" value="<?php echo $infoAlumno['nombre'] ?>" />
+      <input type="text" name="nombre" required="required" value="<?php echo $infoAlumno['nombre'] ?>" id="nombre"/>
       <span>Nombre</span>
       <i></i>
     </div>
 
     <div class="inputBox">
-      <input type="text" name="apellido" required="required" value="<?php echo $infoAlumno['apellido'] ?>"></input>
+      <input type="text" name="apellido" required="required" value="<?php echo $infoAlumno['apellido'] ?>" id="apellido"></input>
       <span>Primer Apellido</span>
       <i></i>
     </div>
 
     <div class="inputBox">
-      <input type="text" name="apellido2" required="required" value="<?php echo $infoAlumno['apellido2'] ?>"></input>
+      <input type="text" name="apellido2" required="required" value="<?php echo $infoAlumno['apellido2'] ?>" id="apellido2"></input>
       <span>Segundo Apellido</span>
       <i></i>
     </div>
 
     <div class="inputBox">
-      <input type="email" name="correo" required="required" value="<?php echo $infoAlumno['correo'] ?>"></input>
+      <input type="email" name="correo" required="required" value="<?php echo $infoAlumno['correo'] ?>" id="correo"></input>
       <span>Email</span>
       <i></i>
     </div>
 
     <div class="inputBox">
-      <input type="text" name="dni" required="required" value="<?php echo $infoAlumno['dni'] ?>"></input>
+      <input type="text" name="dni" required="required" value="<?php echo $infoAlumno['dni'] ?>" id="dni"></input>
       <span>DNI</span>
       <i></i>
     </div>
 
     <div class="inputBox">
-      <input type="text" name="telefono" required="required" value="<?php echo $infoAlumno['telefono'] ?>"></input>
+      <input type="text" name="telefono" required="required" value="<?php echo $infoAlumno['telefono'] ?>" id="tel"></input>
       <span>Telefono</span>
       <i></i>
     </div>
@@ -140,5 +140,6 @@ if(!isset($_GET['id'])){
 </div>
 
 <script src="../js/alerts-server.js"></script>
+<script src="../js/valid-info-alumnos.js"></script>
 </body>
 </html>
