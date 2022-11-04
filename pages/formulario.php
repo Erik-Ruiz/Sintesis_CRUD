@@ -79,8 +79,7 @@ if(!isset($_GET['id'])){
         <i></i>
       </div>
     </div>    
-    <p type="IMG"><input type="file" name="fileToUpload"></input></p>
-    <button type="submit" id="send">Guardar</button>
+
 
     
     
@@ -134,12 +133,15 @@ if(!isset($_GET['id'])){
 
     ?>
     
-
+    <p type="IMG"><input type="file" name="fileToUpload"></input></p>
+    <button type="submit" id="send" onclick="admin()">Guardar</button>
+    <button>Cancelar</button>
     
   </form>
 </div>
 
 <script src="../js/alerts-server.js"></script>
 <script src="../js/valid-info-alumnos.js"></script>
+<script src="../js/cancelar.js"></script>
 </body>
 </html>
