@@ -176,20 +176,20 @@
             $url2 =explode('pages/', $url[0]);
             if(isset($_GET['nombre']) or isset($_GET['apellido']) or isset($_GET['apellido2']) or isset($_GET['correo']) or isset($_GET['dni']) or isset($_GET['matricula'])){?>
               <div class="page-link">
-            <a href="<?php echo $url2[1]?>&page=1">&laquo;</a>
-            <?php
-               for($i=1; $i<=$total_pages; $i++){
-                 if($i==$page){?>
-                   <a class="active" href="<?php echo $url2[1]?>&page=<?php echo $i?>"><?php echo $i?></a>
-                   <?php
-                 }else{?>
-                   <a href="<?php echo $url2[1]?>&page=<?php echo $i ?>"><?php echo $i?></a>
-                   <?php
-                 }
-             }
-             ?>
-                 <a href="<?php echo $url2[1]?>&page=<?php echo $total_pages ?>">&raquo;</a>
-                 </div><?php
+              <a href="<?php echo $url2[1]?>&page=1">&laquo;</a>
+              <?php
+                for($i=1; $i<=$total_pages; $i++){
+                  if($i==$page){?>
+                    <a class="active" href="<?php echo $url2[1]?>&page=<?php echo $i?>"><?php echo $i?></a>
+                    <?php
+                  }else{?>
+                    <a href="<?php echo $url2[1]?>&page=<?php echo $i ?>"><?php echo $i?></a>
+                    <?php
+                  }
+              }
+              ?>
+                  <a href="<?php echo $url2[1]?>&page=<?php echo $total_pages ?>">&raquo;</a>
+                  </div><?php
             }else{
               ?>
                

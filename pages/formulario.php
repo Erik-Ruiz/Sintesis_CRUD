@@ -33,53 +33,89 @@ if(!isset($_GET['id'])){
 }
 ?>
 
-<div class="box">
+<div class="container">
   <form class="form" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data" onsubmit="FormAlumno(event)">
     <h2>ALUMNO</h2>
     <?php 
     if(!isset($_GET['id'])){
     ?>
-    
-    <div class="flex">
+
       <div class="inputBox">
+
+        <div class = "flex">
+          <label>Nombre</label>
+        </div> 
+
         <input type="text" required= "required" name="nombre" id="nombre"/>  
-        <span>Nombre</span>      
+        <span></span>      
         <i></i>
       </div>
 
       <div class="inputBox">
-      <span>Primer Apellido</span>
+
+        <div class = "flex">
+          <label>Primer Apellido</label>
+        </div>  
+
         <input type="text" required="required" name="apellido" id="apellido">
+        <span></span>
         <i></i>
       </div>
 
       <div class="inputBox">
-      <span>Segundo apellido</span>
+        
+        <div class = "flex">
+          <label>Segundo Apellido</label>
+        </div>  
+
         <input type="text" required="required" name="apellido2" id="apellido2"></input>
+        <span></span>
         <i></i>
       </div>
-    </div>
 
-    <div class="">
       <div class="inputBox">
-      <span>Correo</span>
+        <div class = "flex">
+          <label>Correo</label>
+        </div>
         <input type="email" required="required" name="correo" id="correo"></input>
+        <span></span>
         <i></i>
       </div>
 
       <div class="inputBox">
-      <span>DNI</span>
+
+        <div class = "flex">
+          <label>DNI</label>
+        </div> 
+
         <input type="text" required="required" name="dni" id="dni"></input>
+        <span></span>
         <i></i>
       </div>
 
       <div class="inputBox">
-      <span>Telefono</span>
+
+        <div class = "flex">
+          <label>Telefono</label>
+        </div> 
+      
         <input type="text" required="required" name="telefono" id="tel"></input>
+        <span></span>
         <i></i>
       </div>
-    </div>    
 
+      <div class="inputBox">
+
+        <div class = "flex">
+          <label>IMG</label>
+        </div> 
+
+        <input type="file" name="fileToUpload"></input>
+        <span>IMG</span>
+        <i></i>
+      </div>
+
+    <button type="submit" id="send">Guardar</button>
 
     
     
