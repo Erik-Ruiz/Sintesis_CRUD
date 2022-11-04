@@ -107,7 +107,7 @@
     <div class='container-alumno'>
   <div class='info-alumno'>
     <?php 
-    if($infoAlumno['matricula']!=''){
+    if(file_exists("../img/alum/".$infoAlumno['matricula'].".png")){
       $foto="../img/alum/".$infoAlumno['matricula'].".png";
     }else{
       $foto="../img/guest-user.jpg";
