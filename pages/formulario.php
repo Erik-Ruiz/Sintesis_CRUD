@@ -126,38 +126,68 @@ if(!isset($_GET['id'])){
       $infoAlumno=Alumno::getAlumnoId($id);
     ?>
     <div class="inputBox">
+
+        <div class = "flex">
+          <label>Nombre</label>
+        </div> 
+
       <input type="text" name="nombre" required="required" value="<?php echo $infoAlumno['nombre'] ?>" id="nombre"/>
-      <span>Nombre</span>
+      <span></span>
       <i></i>
     </div>
 
     <div class="inputBox">
+
+        <div class = "flex">
+          <label>Primer Apellido</label>
+        </div> 
+
       <input type="text" name="apellido" required="required" value="<?php echo $infoAlumno['apellido'] ?>" id="apellido"></input>
-      <span>Primer Apellido</span>
+      <span></span>
       <i></i>
     </div>
 
     <div class="inputBox">
+
+        <div class = "flex">
+          <label>Segundo Apellido</label>
+        </div> 
+      
       <input type="text" name="apellido2" required="required" value="<?php echo $infoAlumno['apellido2'] ?>" id="apellido2"></input>
-      <span>Segundo Apellido</span>
+      <span></span>
       <i></i>
     </div>
 
     <div class="inputBox">
+
+      <div class = "flex">
+          <label>Email</label>
+        </div> 
+
       <input type="email" name="correo" required="required" value="<?php echo $infoAlumno['correo'] ?>" id="correo"></input>
-      <span>Email</span>
+      <span></span>
       <i></i>
     </div>
 
     <div class="inputBox">
+
+      <div class = "flex">
+          <label>DNI</label>
+        </div> 
+
       <input type="text" name="dni" required="required" value="<?php echo $infoAlumno['dni'] ?>" id="dni"></input>
-      <span>DNI</span>
+      <span></span>
       <i></i>
     </div>
 
     <div class="inputBox">
+
+      <div class = "flex">
+          <label>Telefono</label>
+        </div> 
+
       <input type="text" name="telefono" required="required" value="<?php echo $infoAlumno['telefono'] ?>" id="tel"></input>
-      <span>Telefono</span>
+      <span></span>
       <i></i>
     </div>
 
