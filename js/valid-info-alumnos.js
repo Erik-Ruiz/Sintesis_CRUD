@@ -26,6 +26,13 @@ const validarDNI=(dni)=>{
     }
 }
 
+const validarTelefono =(tel)=>{
+    if(tel.length == 9 && !isNaN(valor)){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 const validarNota=(valor)=> {
@@ -35,7 +42,7 @@ const validarNota=(valor)=> {
 
 const validarNombre = (val) => {
     const usernameRegex = /^[a-zA-Z]+$/;
-    return usernameRegex.test(val);
+    return !usernameRegex.test(val);
 }
 
 
@@ -52,22 +59,53 @@ const ValidadorDeCorreo =(correo)=>{
     return msg;
 }
 
-const alertsForm=(event,msg)=>{
+const alertsForm=(msg)=>{
     
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: msg,
-        
+        text: msg, 
     })
-    event.preventDefault();
+    
 }
 
 
 
 const FormEditNota =(event)=>{
+    
+    
     if(!validarNota(document.getElementById('nota').value)){
-        alertsForm(event,'Nota no valida')
+        event.preventDefault();
+        alertsForm('Nota no valida')
+    }
+}
+
+
+const FormAlumno =(event)=>{
+    let nombre = document.getElementById('nombre').value
+    let apellido = document.getElementById('apellido').value
+    let apellido2 = document.getElementById('apellido2').value
+    let correo = document.getElementById('correo').value
+    let tel = document.getElementById('tel').value
+    let dni = document.getElementById('dni').value
+    
+    if(validarNombre(nombre) || validarNombre(apellido) || validarNombre(apellido2)){
+        event.preventDefault();
+        alertsForm('Nombre o apellidos invalidos');
     }
 
+    if(!validarDNI(dni)){
+        event.preventDefault();
+        alertsForm('DNI o NIE invalido')  
+    }
+
+    if(!ValidadorDeCorreo(correo)){
+        event.preventDefault();
+        alertsForm('Correo invalido');
+    }
+
+    if(!validarTelefono(tel)){
+        event.preventDefault();
+        alertsForm('Telefono invalido');
+    }
 }

@@ -2,9 +2,9 @@
 
 
 const SERVIDOR ='localhost';
-const USUARIO = 'root';
-const PASSWORD = '';
-const BD = 'sintesis';
+const USUARIO = 'admin1';
+const PASSWORD = 'admin1234';
+const BD = 'bd_sintesis';
 
 // define('SERVIDOR', "192.168.114.109");
 
