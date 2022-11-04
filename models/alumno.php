@@ -75,8 +75,8 @@ final class Alumno extends Persona{
         $conexion=self::bd();//conexion con la bd
 
         //echo $_GET['nombre'];
-        if(isset($_GET['nombre'])){
-           $where="where nombre like '%".$_GET['nombre']."%' "; 
+        if(isset($_GET['nombre']) or isset($_GET['apellido']) or isset($_GET['apellido2']) or isset($_GET['correo']) or isset($_GET['dni']) or isset($_GET['matricula'])){
+           $where="where nombre like '%".$_GET['nombre']."%' and apellido like '%".$_GET['apellido']."%' and apellido2 like '%".$_GET['apellido2']."%' and correo like '%".$_GET['correo']."%' and dni like '%".$_GET['dni']."%' and matricula like '%".$_GET['matricula']."%' "; 
         }else{
            $where=''; 
         }
