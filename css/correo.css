@@ -175,7 +175,7 @@ body {
     height: 44px;
 }
 
-#send {
+.send {
 
     margin-top: 25px;
 
@@ -199,9 +199,18 @@ body {
 
 }
 
-#send:hover {
+.send:hover {
     
     opacity: 0.8;
     transition: 0.3s;
 
+}
+
+.cancelar{
+    position: fixed;
+    width: 100px;
+    top: 5px;
+    right: 50px;
+    color: #fff;
+    background:#ff4646;
 }

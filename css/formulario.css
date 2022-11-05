@@ -50,7 +50,7 @@ body{
 
     width: 100%;
 
-    margin-top: 15%;
+    margin-top: 10px;
 
     flex-direction: row;
     justify-content: center;
@@ -125,17 +125,17 @@ body{
     height: 44px;
 }
 
-#send {
+.send {
 
     margin-top: 25px;
 
     border: none;
     outline: none;
 
-    background:#78788c;
+   
     padding: 11px 25px;
 
-    width: 100%;
+    width: 30%;
 
     display: flex;
     text-align: center;
@@ -143,15 +143,35 @@ body{
 
     border-radius: 8px;
 
-    color: #fff;
 
     cursor: pointer;
 
 }
 
-#send:hover {
+.send:hover {
     
     opacity: 0.8;
     transition: 0.3s;
 
+}
+
+.btn-space{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content:end;
+}
+
+.enviar{
+    color: #fff;
+    background:#6794f7;
+}
+
+.cancelar{
+    position: fixed;
+    width: 100px;
+    top: 5px;
+    right: 50px;
+    color: #fff;
+    background:#ff4646;
 }

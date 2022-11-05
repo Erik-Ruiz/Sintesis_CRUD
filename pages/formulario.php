@@ -199,11 +199,24 @@ if(!isset($_GET['id'])){
 
     ?>
     
-    <p type="IMG"><input type="file" name="fileToUpload"></input></p>
-    <button type="submit" id="send" onclick="admin()">Guardar</button>
-    <button>Cancelar</button>
+    <div class="inputBox">
+
+        <div class = "flex">
+          <label>IMG</label>
+        </div> 
+
+        <input type="file" name="fileToUpload"></input>
+        <span>IMG</span>
+        <i></i>
+      </div>
     
+    <div class="btn-space">
+      
+      <button type="submit" class="send enviar" >Guardar</button>
+    </div>
   </form>
+    
+<button class="send cancelar" id="cancelar" onclick="admin()">Cancelar</button>
 </div>
 
 <script src="../js/alerts-server.js"></script>

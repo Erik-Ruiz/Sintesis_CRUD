@@ -20,9 +20,11 @@ require_once '../components/cabecera.html';
             <i></i>    
         </div>
         
-        <button id="send" type="submit">Guardar</button>
+        <button class="send" type="submit">Guardar</button>
     
     </form>
+    <button class="send cancelar" id="cancelar" onclick="alum(<?php echo $_GET['id']; ?>)">Cancelar</button>
     
 </div>
 <script src="../js/valid-info-alumnos.js"></script>
+<script src="../js/cancelar.js"></script>

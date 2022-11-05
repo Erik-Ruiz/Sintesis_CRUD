@@ -25,13 +25,15 @@
             </div>
             
             <input type="hidden" name="correos" value="" id="correos"/>
-            <button id ="send" type="submit" value = "Login" name="enviar" >Enviar</button>
+            <button class="send" type="submit" value = "Login" name="enviar" >Enviar</button>
         </form>
+        <button class="send cancelar" id="cancelar" onclick="admin()">Cancelar</button>
     </div>
     <script src="../js/veralumnos.js"></script>
     <script>
         document.getElementById("correos").value = localStorage.getItem('correos');
         resetStorage();
     </script>
+    <script src="../js/cancelar.js"></script>
 </body>
 </html>
