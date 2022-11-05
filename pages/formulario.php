@@ -1,5 +1,11 @@
 <?php
+  session_start();
 
+  if(empty($_SESSION['login'])){
+
+    echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    
+  }
     //require_once '../components/cabecera.html';
 
 ?> 

@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  if(empty($_SESSION['login'])){
+
+    echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

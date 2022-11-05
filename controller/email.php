@@ -1,7 +1,13 @@
 <?php
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
+session_start();
 
+if(empty($_SESSION['login'])){
+
+  echo "<script>location.href='../pages/login.php?nok=1'</script>";
+  
+}
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;//Servidor al que se le envia el correo

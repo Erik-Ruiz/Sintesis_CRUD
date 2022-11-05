@@ -1,8 +1,10 @@
 <?php
   session_start();
+
   if(empty($_SESSION['login'])){
-    //header("Location: ../pages/login.php");
-    //die();
+
+    echo "<script>location.href='../pages/login.php?nok=1'</script>";
+    
   }
   require_once '../components/cabecera.html';
   require_once '../models/alumno.php';

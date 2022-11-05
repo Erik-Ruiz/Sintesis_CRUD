@@ -3,7 +3,13 @@
 require_once '../models/alumno.php';
 require_once '../includes/sizeimg.inc.php';
 require_once '../includes/valid.inc.php';
+session_start();
 
+if(empty($_SESSION['login'])){
+
+  echo "<script>location.href='../pages/login.php?nok=1'</script>";
+  
+}
 function genMatricula(){
     $mat='';
     for ($i=0; $i < 12; $i++) { 
